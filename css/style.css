@@ -1,0 +1,152 @@
+/* --- VARIABLES CSS (COLORES) --- */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-bg: #f4f4f4;
+  /* En modo claro, la superposición es suave (30% opacidad) */
+  --hero-overlay: rgba(0, 0, 0, 0.3); 
+}
+
+/* --- MODO OSCURO --- */
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --card-bg: #1e1e1e;
+  /* En modo oscuro, oscurecemos fuerte el fondo (85% opacidad) */
+  --hero-overlay: rgba(0, 0, 0, 0.425); 
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-family: 'Nunito', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  /* Fallback de transición para propiedades que no entran en el view-transition */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- ESTILOS DEL BOTÓN FLOTANTE --- */
+.theme-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(8, 8, 8, 0.425);
+  border: 2px solid var(--text-color);
+  color: var(--text-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-btn img {
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.theme-btn:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* --- VIEW TRANSITION API (EL EFECTO CIRCULAR) --- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 9999; }
+
+/* --- SECCIONES --- */
+.hero {
+  position: relative;
+  height: 100vh;
+  /* Tu imagen de fondo original */
+  background: linear-gradient(
+      rgba(247, 0, 255, 0.623),
+      rgba(0, 4, 255, 0.479)
+    ),
+    url('../img/fondo_index.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; 
+  text-align: center;
+}
+
+/* ACÁ ESTÁ EL TRUCO DE LA OSCURIDAD */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Usamos la variable que cambia según el modo */
+  background: var(--hero-overlay);
+  /* Agregamos transición para que si no funciona el JS, igual se vea suave */
+  transition: background 0.9s ease;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 1rem;
+  color: white;
+  text-decoration: none;
+  border: 2px solid white;
+  padding: 0.7rem 1.9rem;
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+#about, #Proyectos {
+  border-radius: 30px;
+  align-items: center;
+  padding: 30px;
+  color: white;
+  margin: 3rem;
+}
+
+#about { background: linear-gradient(rgba(247, 0, 255, 0.623), rgba(0, 4, 255, 0.479)); }
+#Proyectos { background: linear-gradient(rgba(0, 4, 255, 0.479), rgba(247, 0, 255, 0.623)); }
+#about h2, #Proyectos h2 { font-size: 30px; color:#ffffff; }
+
+.profile {
+  height: 300px;
+  border-radius: 50%;
+  filter: brightness(100%);
+  position: relative;
+  z-index: 2;
+}
+
+main { padding: 3rem 2rem; }
+section { margin: 3rem; }
+h2 { font-size: 2rem; margin-bottom: 1rem; }
+.item { margin-bottom: 2rem; }
+footer { background: #111; color: white; text-align: center; padding: 1rem; }

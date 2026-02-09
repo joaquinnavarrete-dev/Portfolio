@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joaquín Navarrete | Web Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
+    <img id="theme-icon" src="../img/moon.png" alt="Luna">
+  </button>
+
+  <header class="hero">
+    <div class="overlay"></div>
+    <img src="../img/profile.png" class="profile" alt="Foto de perfil">
+    <div class="content">
+      <h1>¡Hola! Soy Joaquín Navarrete</h1>
+      <p>Full Stack Developer | Software Engineering Student</p>
+      <a href="#about" class="cta">Sobre mí</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>Sobre mí</h2>
+    <p>Soy estudiante de último año de Programador Universitario en Informática con experiencia en desarrollo web usando JavaScript, Python y HTML. Me especializo en aplicaciones escalables, bases de datos optimizadas e interfaces intuitivas, aplicando buenas prácticas y metodologías ágiles.</p>
+  </section>
+
+  <section id="Proyectos">
+    <h2>Proyectos</h2>
+  </section>
+
+  <section id="habilidades">
+    <h2>Habilidades</h2>
+    <ul>
+      <li>Lenguajes: JavaScript, Python, Node.js</li>
+      <li>Frameworks/Librerías: React, Express.js, Bootstrap</li>
+      <li>Bases de Datos: SQL</li>
+      <li>Desarrollo Web: HTML, CSS, Diseño Responsivo</li>
+      <li>Control de versiones: Git, GitHub</li>
+      <li>Diseño: Figma, Adobe</li>
+      <li>Metodologías: Scrum</li>
+    </ul>
+  </section>
+  
+  <section id="formacion">
+    <h2>Formación Académica</h2>
+    <p><strong>Programador Universitario en Informática</strong> – Universidad Nacional de Santiago Del Estero (2021 - Presente)</p>
+  </section>
+
+  <section id="certificaciones">
+    <h2>Certificaciones</h2>
+    <ul>
+      <li>Full Stack Developer – Ministerio de Educación de Buenos Aires (2024)</li>
+      <li>Certificación intermedia en Inglés – CUI, UBA (2024)</li>
+      <li>Certificación en Alemán – CUI, UBA (2023)</li>
+    </ul>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>📧 <a href="mailto:joaquinnavarrete1@outlook.com">joaquinnavarrete1@outlook.com</a></p>
+    <p>📍 Santiago del Estero, Argentina</p>
+    <p>📱 +54 3853131738</p>
+    <p>
+      <a href="https://github.com/thesuburbia2" target="_blank">GitHub</a> |
+      <a href="https://www.linkedin.com/in/joaqu%C3%ADn-navarrete-476b5a304/" target="_blank">LinkedIn</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>© Joaquín Navarrete – 2025</p>
+  </footer>
+
+  <script>
+    const toggleButton = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const body = document.body;
+
+    toggleButton.addEventListener('click', (event) => {
+      
+      const toggleLogic = () => {
+        const isDark = body.classList.toggle('dark-mode');
+        
+        if (isDark) {
+          themeIcon.src = "../img/sun.png"; 
+          themeIcon.alt = "Sol";
+        } else {
+          themeIcon.src = "../img/moon.png";
+          themeIcon.alt = "Luna";
+        }
+      };
+
+      if (!document.startViewTransition) {
+        toggleLogic();
+        return;
+      }
+
+      const x = event.clientX;
+      const y = event.clientY;
+
+      const endRadius = Math.hypot(
+        Math.max(x, innerWidth - x),
+        Math.max(y, innerHeight - y)
+      );
+
+      const transition = document.startViewTransition(() => {
+        toggleLogic();
+      });
+
+      transition.ready.then(() => {
+        document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${endRadius}px at ${x}px ${y}px)`,
+            ],
+          },
+          {
+            duration: 500,
+            easing: 'ease-in-out',
+            pseudoElement: '::view-transition-new(root)',
+          }
+        );
+      });
+    });
+  </script>
+
+</body>
+</html>
