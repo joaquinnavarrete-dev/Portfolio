@@ -38,6 +38,7 @@ body {
 
 /* --- CONTENEDOR PRINCIPAL --- */
 .main-container {
+  background: linear-gradient(rgba(247, 0, 255, 0.13), rgba(0, 4, 255, 0.479));
   display: flex;
   flex-direction: column; /* Apila .top-section, .formacion y .contacto */
   align-items: center;
@@ -251,6 +252,149 @@ h2 {
   background-color: rgba(247, 0, 255, 0.15);
   cursor: default;
 }
+
+
+.proyects-container{
+ background: linear-gradient(rgba(247, 0, 255, 0.623), rgba(0, 4, 255, 0.479));
+ padding: 300px;
+ width: 100%;
+ border-radius: 50px;
+ margin-bottom: 100px;
+ text-align: center;
+}
+
+/* --- SECCIÓN PROYECTOS --- */
+#proyectos {
+  width: 100%;
+  max-width: 1200px; /* Un poco más ancho para que entren 3 cómodos */
+  margin: 0 auto 4rem auto;
+  text-align: center;
+}
+
+.projects-grid {
+  display: grid;
+  /* Esto crea 3 columnas simétricas que bajan a 1 en celular */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.project-card {
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  overflow: hidden; /* Para que la imagen respete el borde redondeado */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer; /* Manito para indicar que es clickeable */
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(247, 0, 255, 0.2); /* Resplandor violeta suave */
+}
+
+/* Imagen Principal del Proyecto */
+.project-main-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid rgba(247, 0, 255, 0.5);
+}
+
+/* Contenido visible siempre */
+.project-info {
+  padding: 20px;
+}
+
+.project-info h3 {
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.project-info p {
+  font-size: 0.95rem;
+  opacity: 0.8;
+  margin-bottom: 15px;
+}
+
+.click-hint {
+  font-size: 0.8rem;
+  color: rgba(247, 0, 255, 0.8);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- SECCIÓN OCULTA (DETALLES) --- */
+.project-details {
+  display: none; /* Oculto por defecto */
+  padding: 0 20px 20px 20px;
+  background-color: rgba(0,0,0,0.02);
+  border-top: 1px solid rgba(128,128,128,0.1);
+  animation: fadeIn 0.5s ease;
+}
+
+/* Cuando la tarjeta tiene la clase 'active', mostramos los detalles */
+.project-card.active .project-details {
+  display: block;
+}
+
+.project-card.active {
+  border: 2px solid rgba(247, 0, 255, 0.5); /* Borde destacado al abrir */
+}
+
+/* Galería de capturas (Scroll horizontal) */
+.gallery {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto; /* Permite deslizar si hay muchas fotos */
+  padding: 15px 0;
+  margin-bottom: 15px;
+  scroll-behavior: smooth;
+}
+
+/* Barra de scroll estilizada fina */
+.gallery::-webkit-scrollbar { height: 6px; }
+.gallery::-webkit-scrollbar-thumb { background: rgba(247, 0, 255, 0.5); border-radius: 10px; }
+
+.gallery img {
+  height: 120px; /* Altura fija, ancho automático */
+  border-radius: 8px;
+  transition: transform 0.2s;
+  border: 1px solid rgba(128,128,128,0.2);
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Tecnologías usadas (reutilizando estilos de skills) */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.tech-badge {
+  background-color: rgba(128, 128, 128, 0.15);
+  color: var(--text-color);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Animación suave al abrir */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
 
 /* --- FORMACIÓN (SE MANTIENE IGUAL, OCUPA TODO EL ANCHO ABAJO) --- */
 #formacion {

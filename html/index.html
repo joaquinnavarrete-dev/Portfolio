@@ -91,7 +91,100 @@
         </div>
       </section>
 
-    </div> <section id="formacion">
+    </div> 
+
+<div class="proyects-container">
+    <section id="proyectos">
+    <h2>Proyectos Destacados</h2>
+    
+    <div class="projects-grid">
+      
+      <article class="project-card" onclick="toggleProject(this)">
+        <img src="../img/proy1_main.jpg" class="project-main-img" alt="Portada Proyecto 1">
+        
+        <div class="project-info">
+          <h3>Nombre Proyecto 1</h3>
+          <p>Una breve descripción de dos líneas sobre qué hace este sistema y cuál fue tu rol principal.</p>
+          <span class="click-hint">Click para ver más 👇</span>
+        </div>
+
+        <div class="project-details">
+          <h4>Galería</h4>
+          <div class="gallery">
+            <img src="../img/proy1_cap1.jpg" alt="Captura 1">
+            <img src="../img/proy1_cap2.jpg" alt="Captura 2">
+            <img src="../img/proy1_cap3.jpg" alt="Captura 3">
+          </div>
+          
+          <h4>Tecnologías</h4>
+          <div class="tech-stack">
+            <span class="tech-badge">React</span>
+            <span class="tech-badge">Node.js</span>
+            <span class="tech-badge">MongoDB</span>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="project-card" onclick="toggleProject(this)">
+        <img src="../img/proy2_main.jpg" class="project-main-img" alt="Portada Proyecto 2">
+        
+        <div class="project-info">
+          <h3>Nombre Proyecto 2</h3>
+          <p>Descripción corta del segundo proyecto. Enfocada en la solución que brinda.</p>
+          <span class="click-hint">Click para ver más 👇</span>
+        </div>
+
+        <div class="project-details">
+          <h4>Galería</h4>
+          <div class="gallery">
+            <img src="../img/proy2_cap1.jpg" alt="Captura 1">
+            <img src="../img/proy2_cap2.jpg" alt="Captura 2">
+          </div>
+          
+          <h4>Tecnologías</h4>
+          <div class="tech-stack">
+            <span class="tech-badge">Python</span>
+            <span class="tech-badge">Django</span>
+            <span class="tech-badge">SQL</span>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="project-card" onclick="toggleProject(this)">
+        <img src="../img/proy3_main.jpg" class="project-main-img" alt="Portada Proyecto 3">
+        
+        <div class="project-info">
+          <h3>Nombre Proyecto 3</h3>
+          <p>Descripción del tercer proyecto. Ideal para mostrar variedad en tu perfil.</p>
+          <span class="click-hint">Click para ver más 👇</span>
+        </div>
+
+        <div class="project-details">
+          <h4>Galería</h4>
+          <div class="gallery">
+            <img src="../img/proy3_cap1.jpg" alt="Captura 1">
+            <img src="../img/proy3_cap2.jpg" alt="Captura 2">
+            <img src="../img/proy3_cap3.jpg" alt="Captura 3">
+          </div>
+          
+          <h4>Tecnologías</h4>
+          <div class="tech-stack">
+            <span class="tech-badge">HTML5</span>
+            <span class="tech-badge">CSS3</span>
+            <span class="tech-badge">JavaScript</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</div>
+
+
+
+    <section id="formacion">
       <h2>Formación Académica</h2>
       <ul class="education-list">
         
@@ -128,7 +221,9 @@
       </p>
     </section>
 
-  </main> <footer>
+  </main> 
+  
+  <footer>
     <p>© Joaquín Navarrete – 2025</p>
   </footer>
 
@@ -183,6 +278,19 @@
         );
       });
     });
+
+    /* --- FUNCIÓN PARA ABRIR/CERRAR PROYECTOS --- */
+function toggleProject(card) {
+  // 1. Opcional: Cerrar los otros si querés que solo uno esté abierto a la vez
+  // Si querés que se puedan abrir varios a la vez, borrá estas 3 líneas siguientes:
+  document.querySelectorAll('.project-card').forEach(c => {
+    if (c !== card) c.classList.remove('active');
+  });
+
+  // 2. Alternar la clase 'active' en la tarjeta clickeada
+  card.classList.toggle('active');
+}
+
   </script>
 
 </body>
