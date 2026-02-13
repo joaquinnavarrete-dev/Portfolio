@@ -58,6 +58,7 @@ body {
   width: 100%;
   max-width: 1400px;        /* Ancho máximo para que no se estire infinito */
   margin-bottom: 4rem;
+  margin-top: 4rem;
 }
 
 /* --- ESTILOS DEL BOTÓN FLOTANTE --- */
@@ -115,6 +116,7 @@ body {
   align-items: center;
   color: white; 
   text-align: center;
+  
 }
 
 .overlay {
@@ -256,32 +258,32 @@ h2 {
 
 .proyects-container{
  background: linear-gradient(rgba(247, 0, 255, 0.623), rgba(0, 4, 255, 0.479));
- padding: 300px;
+ padding: 100px;
  width: 100%;
  border-radius: 50px;
- margin-bottom: 100px;
+ margin-bottom: 50px;
  text-align: center;
 }
 
 /* --- SECCIÓN PROYECTOS --- */
 #proyectos {
   width: 100%;
-  max-width: 1200px; /* Un poco más ancho para que entren 3 cómodos */
+  max-width: 1700px; /* Un poco más ancho para que entren 3 cómodos */
   margin: 0 auto 4rem auto;
   text-align: center;
 }
 
 .projects-grid {
   display: grid;
-  /* Esto crea 3 columnas simétricas que bajan a 1 en celular */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  padding: 0 20px;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  gap: 40px;
+  /* AGREGÁ ESTO: Alinea los items al inicio verticalmente */
+  align-items: start; 
 }
 
 .project-card {
   background-color: var(--card-bg);
-  border-radius: 20px;
+  border-radius: 40px;
   overflow: hidden; /* Para que la imagen respete el borde redondeado */
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
@@ -334,7 +336,7 @@ h2 {
   padding: 0 20px 20px 20px;
   background-color: rgba(0,0,0,0.02);
   border-top: 1px solid rgba(128,128,128,0.1);
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn 0.7s ease;
 }
 
 /* Cuando la tarjeta tiene la clase 'active', mostramos los detalles */
@@ -355,6 +357,12 @@ h2 {
   margin-bottom: 15px;
   scroll-behavior: smooth;
 }
+
+
+
+
+
+
 
 /* Barra de scroll estilizada fina */
 .gallery::-webkit-scrollbar { height: 6px; }

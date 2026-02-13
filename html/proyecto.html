@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del Proyecto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/proyecto.css">
+</head>
+<body>
+
+  <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
+    <img id="theme-icon" src="../img/moon.png" alt="Luna">
+  </button>
+
+  <a href="index.html" class="back-btn">← Volver al Portfolio</a>
+
+  <main class="detalle-container">
+    
+    <header class="detalle-header">
+      <h1 id="titulo-proyecto">Cargando...</h1>
+      <img id="img-principal" src="" alt="Portada" class="main-img-detalle">
+    </header>
+
+    <section class="detalle-info">
+      <p id="descripcion-proyecto"></p>
+      
+      <div class="links-proyecto" id="links-container">
+        </div>
+    </section>
+
+    <section class="detalle-galeria">
+      <h2>Capturas de Pantalla</h2>
+      <div class="gallery-grid" id="galeria-container">
+        </div>
+    </section>
+
+    <section class="detalle-stack">
+      <h2>Tecnologías Usadas</h2>
+      <div class="tech-stack-detalle" id="stack-container">
+        </div>
+    </section>
+
+  </main>
+
+  <script src="data.js"></script> 
+  
+  <script>
+    // LÓGICA DEL MODO OSCURO CON VIEW TRANSITION (Exactamente igual que en index.html)
+    const toggleButton = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const body = document.body;
+
+    toggleButton.addEventListener('click', (event) => {
+      
+      const toggleLogic = () => {
+        const isDark = body.classList.toggle('dark-mode');
+        if (isDark) {
+          themeIcon.src = "../img/sun.png"; 
+          themeIcon.alt = "Sol";
+        } else {
+          themeIcon.src = "../img/moon.png";
+          themeIcon.alt = "Luna";
+        }
+      };
+
+      if (!document.startViewTransition) {
+        toggleLogic();
+        return;
+      }
+
+      const x = event.clientX;
+      const y = event.clientY;
+
+      const endRadius = Math.hypot(
+        Math.max(x, innerWidth - x),
+        Math.max(y, innerHeight - y)
+      );
+
+      const transition = document.startViewTransition(() => {
+        toggleLogic();
+      });
+
+      transition.ready.then(() => {
+        document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${endRadius}px at ${x}px ${y}px)`,
+            ],
+          },
+          {
+            duration: 500,
+            easing: 'ease-in-out',
+            pseudoElement: '::view-transition-new(root)',
+          }
+        );
+      });
+    });
+
+    // LÓGICA PARA CARGAR LOS DATOS DEL PROYECTO
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const proyecto = proyectosData[id];
+
+    if (proyecto) {
+      document.getElementById('titulo-proyecto').innerText = proyecto.titulo;
+      document.getElementById('descripcion-proyecto').innerText = proyecto.descripcion;
+      document.getElementById('img-principal').src = proyecto.imgPrincipal;
+
+      const galeriaContainer = document.getElementById('galeria-container');
+      proyecto.galeria.forEach(imgSrc => {
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        galeriaContainer.appendChild(img);
+      });
+
+      const stackContainer = document.getElementById('stack-container');
+      proyecto.tecnologias.forEach(tech => {
+        const span = document.createElement('span');
+        span.className = 'tech-badge';
+        span.innerHTML = `<img src="${tech.icono}" style="width:20px; vertical-align:middle; margin-right:5px"> ${tech.nombre}`;
+        stackContainer.appendChild(span);
+      });
+
+      const linksContainer = document.getElementById('links-container');
+      if (proyecto.repoLink) {
+        linksContainer.innerHTML += `<a href="${proyecto.repoLink}" target="_blank" class="cta-small">Ver Repositorio</a>`;
+      }
+      if (proyecto.demoLink) {
+        linksContainer.innerHTML += `<a href="${proyecto.demoLink}" target="_blank" class="cta-small outline">Ver Demo</a>`;
+      }
+
+    } else {
+      document.querySelector('.detalle-container').innerHTML = "<h1>Proyecto no encontrado 😢</h1>";
+    }
+  </script>
+
+</body>
+</html>
