@@ -24,35 +24,89 @@
 
     <section class="detalle-info">
       <p id="descripcion-proyecto"></p>
-      
-      <div class="links-proyecto" id="links-container">
-        </div>
-    </section>
-
-    <section class="detalle-galeria">
-      <h2>Capturas de Pantalla</h2>
-      <div class="gallery-grid" id="galeria-container">
-        </div>
+      <div class="links-proyecto" id="links-container"></div>
     </section>
 
     <section class="detalle-stack">
       <h2>Tecnologías Usadas</h2>
-      <div class="tech-stack-detalle" id="stack-container">
-        </div>
+      <div class="tech-stack-detalle" id="stack-container"></div>
     </section>
+
+    <section class="detalle-galeria">
+      <h2>Capturas de Pantalla</h2>
+      <div class="gallery-grid" id="galeria-container"></div>
+    </section>
+
 
   </main>
 
-  <script src="data.js"></script> 
-  
   <script>
-    // LÓGICA DEL MODO OSCURO CON VIEW TRANSITION (Exactamente igual que en index.html)
+    /* --- 1. BASE DE DATOS DE PROYECTOS --- */
+    const proyectosData = {
+      // CAMBIO CLAVE: El nombre de la propiedad ahora es "filmfinder" para coincidir con el ID
+      "filmfinder": {
+        titulo: "FilmFinder",
+        descripcion: "Plataforma web Full Stack diseñada para la exploración de catálogos cinematográficos. El sistema permite a los usuarios buscar películas en tiempo real, aplicar filtros por categoría o calificación, y acceder a fichas técnicas detalladas. Incluye un módulo social para dejar comentarios y un formulario de contacto funcional. UI diseñada en Figma.",
+        
+        // CORRECCIÓN DE RUTAS: Usamos .png según tu captura de archivos
+        imgPrincipal: "../img/FilmFinder.png", 
+        
+        galeria: [
+          "../img/inicio-film-finderpng.png",
+          "../img/filmfinder_pagina_pelicula.png", // Asumo que es .png por el icono
+          "../img/film-finder-catalogo.png"
+        ],
+        
+        tecnologias: [
+          // Flask no tiene icono en tu carpeta, repetimos python o podés agregar uno
+          { nombre: "Python", icono: "../icons/python.png" },
+          { nombre: "Flask", icono: "../icons/python.png" }, 
+          { nombre: "JavaScript", icono: "../icons/js.png" },
+          { nombre: "HTML5", icono: "../icons/html5.png" },
+          { nombre: "CSS3", icono: "../icons/css3.png" },
+          { nombre: "Figma", icono: "../icons/figma.png" }
+        ],
+        
+        repoLink: "https://github.com/tuusuario/filmfinder", 
+        demoLink: "https://filmfinder-demo.com" 
+      },
+      
+      // Podés agregar más proyectos con IDs simples como "2" o nombres como "ecommerce"
+     "2": {
+        titulo: "Museo del Ciclomotor",
+        descripcion: "Sistema de software desarrollado para tótems inteligentes interactivos dentro del museo. La aplicación gestiona la base de datos completa de la colección, permitiendo el ABM (Alta, Baja y Modificación) de los vehículos. Cuenta con un sistema de 'bajas lógicas' para recuperar ítems eliminados, buscador por código interno y un panel de edición robusto. Los visitantes pueden interactuar con las pantallas para visualizar la ficha técnica, historia y galería de fotos de cada ciclomotor.",
+        
+        // Imagen principal (La pantalla de inicio se ve genial como portada)
+        imgPrincipal: "../img//Logo-Museo.png", 
+        
+        galeria: [
+          "../img//pantalla-inicio-museo.png",    // Vista del detalle
+          "../img//pagina-modelo-museo.png",    // Lista de items
+          "../img/carga-items-museo.png",      // Formulario de carga
+          "../img/pantalla-bloqueo-museo.png", // Pantalla de bloqueo
+        ],
+        
+        tecnologias: [
+          // Asumo estas tecnologías por el tipo de sistema (ABM/Gestión)
+          // Si usaste otras, avisame y cambiamos los iconos.
+          { nombre: "JavaScript", icono: "../icons/js.png" },
+          { nombre: "HTML5", icono: "../icons/html5.png" },
+          { nombre: "CSS3", icono: "../icons/css3.png" },
+          // Vi en tu carpeta que tenés "Sql.png" con mayúscula, respetamos eso:
+          { nombre: "SQL", icono: "../icons/Sql.png" } 
+        ],
+        
+        repoLink: "#", // Poné el link si tenés, o dejalo así
+        demoLink: null
+      },
+    };
+
+    /* --- 2. LÓGICA DEL MODO OSCURO --- */
     const toggleButton = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const body = document.body;
 
     toggleButton.addEventListener('click', (event) => {
-      
       const toggleLogic = () => {
         const isDark = body.classList.toggle('dark-mode');
         if (isDark) {
@@ -71,11 +125,7 @@
 
       const x = event.clientX;
       const y = event.clientY;
-
-      const endRadius = Math.hypot(
-        Math.max(x, innerWidth - x),
-        Math.max(y, innerHeight - y)
-      );
+      const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
 
       const transition = document.startViewTransition(() => {
         toggleLogic();
@@ -83,46 +133,62 @@
 
       transition.ready.then(() => {
         document.documentElement.animate(
-          {
-            clipPath: [
-              `circle(0px at ${x}px ${y}px)`,
-              `circle(${endRadius}px at ${x}px ${y}px)`,
-            ],
-          },
-          {
-            duration: 500,
-            easing: 'ease-in-out',
-            pseudoElement: '::view-transition-new(root)',
-          }
+          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`] },
+          { duration: 500, easing: 'ease-in-out', pseudoElement: '::view-transition-new(root)' }
         );
       });
     });
 
-    // LÓGICA PARA CARGAR LOS DATOS DEL PROYECTO
+    /* --- 3. LÓGICA DE CARGA DE DATOS --- */
+    // Leemos el ID de la URL
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    const proyecto = proyectosData[id];
+    const id = params.get('id'); // Esto trae "filmfinder"
 
-    if (proyecto) {
+    console.log("ID recibido:", id); // F12 para ver esto en consola
+
+    // Verificamos si existe el ID y si hay datos para ese ID
+    if (id && proyectosData[id]) {
+      const proyecto = proyectosData[id];
+      
+      // Rellenar textos
       document.getElementById('titulo-proyecto').innerText = proyecto.titulo;
       document.getElementById('descripcion-proyecto').innerText = proyecto.descripcion;
-      document.getElementById('img-principal').src = proyecto.imgPrincipal;
+      
+      // Rellenar imagen principal con manejo de error
+      const imgMain = document.getElementById('img-principal');
+      imgMain.src = proyecto.imgPrincipal;
+      imgMain.style.display = 'block'; 
+      imgMain.onerror = function() { 
+          console.error("No se encontró la imagen:", proyecto.imgPrincipal);
+          // Opcional: poner una imagen por defecto si falla
+          // this.src = '../img/FilmFinder.png'; 
+      };
 
+      // Rellenar Galería
       const galeriaContainer = document.getElementById('galeria-container');
-      proyecto.galeria.forEach(imgSrc => {
-        const img = document.createElement('img');
-        img.src = imgSrc;
-        galeriaContainer.appendChild(img);
-      });
+      if(proyecto.galeria && proyecto.galeria.length > 0) {
+          proyecto.galeria.forEach(imgSrc => {
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            galeriaContainer.appendChild(img);
+          });
+      } else {
+          // Ocultar la sección si no hay fotos
+          document.querySelector('.detalle-galeria').style.display = 'none';
+      }
 
+      // Rellenar Tecnologías
       const stackContainer = document.getElementById('stack-container');
-      proyecto.tecnologias.forEach(tech => {
-        const span = document.createElement('span');
-        span.className = 'tech-badge';
-        span.innerHTML = `<img src="${tech.icono}" style="width:20px; vertical-align:middle; margin-right:5px"> ${tech.nombre}`;
-        stackContainer.appendChild(span);
-      });
+      if(proyecto.tecnologias && proyecto.tecnologias.length > 0) {
+          proyecto.tecnologias.forEach(tech => {
+            const span = document.createElement('span');
+            span.className = 'tech-badge';
+            span.innerHTML = `<img src="${tech.icono}" style="width:20px; vertical-align:middle; margin-right:5px"> ${tech.nombre}`;
+            stackContainer.appendChild(span);
+          });
+      }
 
+      // Rellenar Links
       const linksContainer = document.getElementById('links-container');
       if (proyecto.repoLink) {
         linksContainer.innerHTML += `<a href="${proyecto.repoLink}" target="_blank" class="cta-small">Ver Repositorio</a>`;
@@ -132,7 +198,15 @@
       }
 
     } else {
-      document.querySelector('.detalle-container').innerHTML = "<h1>Proyecto no encontrado 😢</h1>";
+      // Si entra acá es porque el ID de la URL no coincide con las claves de 'proyectosData'
+      console.error("ID no encontrado en la base de datos:", id);
+      document.querySelector('.detalle-container').innerHTML = `
+        <div style="text-align:center;">
+            <h1 style="color:var(--text-color);">⚠️ Proyecto no encontrado</h1>
+            <p style="color:var(--text-color);">El ID "${id}" no existe en la base de datos.</p>
+            <a href="index.html" class="back-btn" style="float:none;">Volver al inicio</a>
+        </div>
+      `;
     }
   </script>
 

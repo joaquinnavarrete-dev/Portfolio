@@ -102,6 +102,14 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.detalle-header {
+  display: flex;           /* Activamos el modo flexible */
+  flex-direction: column;  /* Ponemos el título arriba de la foto */
+  align-items: center;     /* ESTO es lo que centra la imagen horizontalmente */
+  text-align: center;      /* Esto centra el texto del título */
+  margin-bottom: 20px;     /* Un poco de aire abajo del encabezado */
+}
+
 .back-btn {
   align-self: flex-start; 
   margin: 20px 0 0 20px; 
@@ -125,26 +133,29 @@ h1, h2 {
 }
 
 .main-img-detalle {
-  width: 100%;
-  height: 400px;
+  width: 100%;             /* Cambié a 100% (con un max-width) para que sea responsive */
+  max-width: 500px;        /* Tope de ancho para que no sea gigante en PC */
+  height: 500px;            /* Altura automática para no deformar la foto */
+  aspect-ratio: 16/9;      /* Opcional: mantiene formato cine. Si querés cuadrada borralo */
   object-fit: cover;
-  border-radius: 15px;
-  margin: 20px 0;
+  border-radius: 40px;
+  margin: 20px auto;       /* El 'auto' a los costados ayuda a centrar si falla el flex */
   border: 2px solid rgba(247, 0, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Un toque de sombra para que resalte */
 }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
   gap: 15px;
   margin-top: 15px;
 }
 
 .gallery-grid img {
-  width: 100%;
-  height: 150px; 
+  width: 60%;
+  height: 100%; 
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
   transition: transform 0.3s;
   border: 1px solid rgba(128, 128, 128, 0.2);
