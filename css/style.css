@@ -61,6 +61,9 @@ body {
   margin-top: 4rem;
 }
 
+
+
+
 /* --- BOTÓN FLOTANTE DEL TEMA (Sol/Luna) --- */
 .theme-btn {
   position: fixed;
@@ -165,6 +168,32 @@ body {
   text-align: center;
 }
 
+/* --- BOTÓN CV CORREGIDO --- */
+.cv-btn { 
+  /* CLAVE: Margin auto a los costados centra el elemento si tiene width definido */
+  margin: 20px auto 0 auto; 
+  
+  display: flex;
+  justify-content: center; /* Centra el texto horizontalmente dentro del botón */
+  align-items: center;     /* Centra el texto verticalmente dentro del botón */
+  
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 15px 30px;     
+  border-radius: 30px;
+  background: linear-gradient(45deg, #f700ff, #0004ff);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  
+  width: fit-content; 
+}
+
+.cv-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(247, 0, 255, 0.4);
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -224,6 +253,7 @@ h2 {
   border-radius: 30px;
   color: white;
   text-align: center;
+  align-content: center;
 }
 
 #about h2 { color: white; }
