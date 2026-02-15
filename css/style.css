@@ -334,7 +334,7 @@ h2 {
 }
 
 .project-card img {
-  height: 300px; /* Ajusté la altura para que no quede TAN alta */
+  height: 500px; /* Ajusté la altura para que no quede TAN alta */
   object-fit: cover;
 }
 
