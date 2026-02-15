@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Joaquín Navarrete | Web Developer</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body class="dark-mode">
 
   <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
-    <img id="theme-icon" src="../img/sun.png" alt="Sol">
+    <img id="theme-icon" src="img/sun.png" alt="Sol">
   </button>
 
   <header class="hero">
     <div class="overlay"></div>
-    <img src="../img/profile.png" class="profile" alt="Joaquín Navarrete">
+    <img src="img/profile.png" class="profile" alt="Joaquín Navarrete">
     <div class="content">
       <h1>¡Hola! Soy Joaquín Navarrete</h1>
       <p>Full Stack Developer | Software Engineering Student</p>
@@ -41,51 +41,51 @@
           <article class="skill-card">
             <h3>Lenguajes</h3>
             <div class="skill-tags">
-              <span><img src="../icons/js.png" alt=""> JavaScript</span>
-              <span><img src="../icons/python.png" alt=""> Python</span>
-              <span><img src="../icons/node.png" alt=""> Node.js</span>
+              <span><img src="icons/js.png" alt=""> JavaScript</span>
+              <span><img src="icons/python.png" alt=""> Python</span>
+              <span><img src="icons/node.png" alt=""> Node.js</span>
             </div>
           </article>
       
           <article class="skill-card">
             <h3>Frameworks & Librerías</h3>
             <div class="skill-tags">
-              <span><img src="../icons/react.png" alt=""> React</span>
-              <span><img src="../icons/express.png" alt=""> Express.js</span>
-              <span><img src="../icons/bootstrap.png" alt=""> Bootstrap</span>
+              <span><img src="icons/react.png" alt=""> React</span>
+              <span><img src="icons/express.png" alt=""> Express.js</span>
+              <span><img src="icons/bootstrap.png" alt=""> Bootstrap</span>
             </div>
           </article>
       
           <article class="skill-card">
             <h3>Bases de Datos</h3>
             <div class="skill-tags">
-              <span><img src="../icons/Sql.png" alt=""> SQL</span>
+              <span><img src="icons/Sql.png" alt=""> SQL</span>
             </div>
           </article>
       
           <article class="skill-card">
             <h3>Desarrollo Web</h3>
             <div class="skill-tags">
-              <span><img src="../icons/html5.png" alt=""> HTML5</span>
-              <span><img src="../icons/css3.png" alt=""> CSS3</span>
-              <span><img src="../icons/responsive.png" alt=""> Responsive</span>
+              <span><img src="icons/html5.png" alt=""> HTML5</span>
+              <span><img src="icons/css3.png" alt=""> CSS3</span>
+              <span><img src="icons/responsive.png" alt=""> Responsive</span>
             </div>
           </article>
       
           <article class="skill-card">
             <h3>Herramientas</h3>
             <div class="skill-tags">
-              <span><img src="../icons/git.png" alt=""> Git</span>
-              <span><img src="../icons/github.png" alt=""> GitHub</span>
-              <span><img src="../icons/scrum.png" alt=""> Scrum</span>
+              <span><img src="icons/git.png" alt=""> Git</span>
+              <span><img src="icons/github.png" alt=""> GitHub</span>
+              <span><img src="icons/scrum.png" alt=""> Scrum</span>
             </div>
           </article>
       
           <article class="skill-card">
             <h3>Diseño</h3>
             <div class="skill-tags">
-              <span><img src="../icons/figma.png" alt=""> Figma</span>
-              <span><img src="../icons/adobe.png" alt=""> Adobe Suite</span>
+              <span><img src="icons/figma.png" alt=""> Figma</span>
+              <span><img src="icons/adobe.png" alt=""> Adobe Suite</span>
             </div>
           </article>
       
@@ -101,7 +101,7 @@
         <div class="projects-grid">
       
           <article class="project-card" onclick="window.location.href='proyecto.html?id=filmfinder'">
-            <img src="../img/FilmFinder.png" class="project-main-img" alt="Portada FilmFinder">
+            <img src="img/FilmFinder.png" class="project-main-img" alt="Portada FilmFinder">
             <div class="project-info">
               <h3>FilmFinder App</h3>
               <p>Plataforma de catálogo de películas con filtros avanzados, búsqueda y sistema de comentarios. Backend en Python/Flask.</p>
@@ -111,7 +111,7 @@
           </article>
 
           <article class="project-card" onclick="window.location.href='proyecto.html?id=2'">
-            <img src="../img/Logo-Museo.png" class="project-main-img" alt="Portada Museo">
+            <img src="img/Logo-Museo.png" class="project-main-img" alt="Portada Museo">
             <div class="project-info">
               <h3>Museo del Ciclomotor</h3>
               <p>Software para tótems inteligentes con gestión de inventario y galería interactiva para visitantes.</p>
@@ -121,7 +121,7 @@
           </article>
 
           <article class="project-card" onclick="window.location.href='proyecto.html?id=3'">
-            <img src="../img/logo-snackway.png" class="project-main-img" alt="SnackWay Home">
+            <img src="img/logo-snackway.png" class="project-main-img" alt="SnackWay Home">
             <div class="project-info">
               <h3>SnackWay</h3>
               <p>E-commerce gastronómico completo con carrito de compras, login y panel de administración en tiempo real.</p>
@@ -191,7 +191,6 @@
       </section>
 
     </div>
-
     
   </main> 
   
@@ -212,11 +211,13 @@
         
         if (isDark) {
           // Si activamos modo oscuro -> Ponemos el Sol (para poder volver a claro)
-          themeIcon.src = "../img/sun.png"; 
+          // Rutas corregidas
+          themeIcon.src = "img/sun.png"; 
           themeIcon.alt = "Sol";
         } else {
           // Si sacamos modo oscuro -> Ponemos la Luna (para volver a oscuro)
-          themeIcon.src = "../img/moon.png";
+          // Rutas corregidas
+          themeIcon.src = "img/moon.png";
           themeIcon.alt = "Luna";
         }
       };

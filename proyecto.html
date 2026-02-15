@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalle del Proyecto</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/proyecto.css">
+  <link rel="stylesheet" href="css/proyecto.css">
 </head>
 
 <body class="dark-mode">
 
   <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
-    <img id="theme-icon" src="../img/sun.png" alt="Sol">
+    <img id="theme-icon" src="img/sun.png" alt="Sol">
   </button>
 
   <a href="index.html" class="back-btn">← Volver al Portfolio</a>
@@ -48,56 +48,59 @@
       "filmfinder": {
         titulo: "FilmFinder",
         descripcion: "Plataforma web Full Stack diseñada para la exploración de catálogos cinematográficos. El sistema permite a los usuarios buscar películas en tiempo real, aplicar filtros por categoría o calificación, y acceder a fichas técnicas detalladas. Incluye un módulo social para dejar comentarios y un formulario de contacto funcional. UI diseñada en Figma.",
-        imgPrincipal: "../img/FilmFinder.png", 
+        // Rutas corregidas
+        imgPrincipal: "img/FilmFinder.png", 
         galeria: [
-          "../img/inicio-film-finderpng.png",
-          "../img/filmfinder_pagina_pelicula.png", 
-          "../img/film-finder-catalogo.png"
+          "img/inicio-film-finderpng.png",
+          "img/filmfinder_pagina_pelicula.png", 
+          "img/film-finder-catalogo.png"
         ],
         tecnologias: [
-          { nombre: "Python", icono: "../icons/python.png" },
-          { nombre: "Flask", icono: "../icons/python.png" }, 
-          { nombre: "JavaScript", icono: "../icons/js.png" },
-          { nombre: "HTML5", icono: "../icons/html5.png" },
-          { nombre: "CSS3", icono: "../icons/css3.png" },
-          { nombre: "Figma", icono: "../icons/figma.png" }
+          { nombre: "Python", icono: "icons/python.png" },
+          { nombre: "Flask", icono: "icons/python.png" }, 
+          { nombre: "JavaScript", icono: "icons/js.png" },
+          { nombre: "HTML5", icono: "icons/html5.png" },
+          { nombre: "CSS3", icono: "icons/css3.png" },
+          { nombre: "Figma", icono: "icons/figma.png" }
         ],
       },
       
-      "museo": { // CAMBIO DE ID "2" a "museo" para consistencia
+      "museo": {
         titulo: "Museo del Ciclomotor",
         descripcion: "Sistema de software desarrollado para tótems inteligentes interactivos dentro del museo. La aplicación gestiona la base de datos completa de la colección, permitiendo el ABM (Alta, Baja y Modificación) de los vehículos. Cuenta con un sistema de 'bajas lógicas' para recuperar ítems eliminados, buscador por código interno y un panel de edición robusto. Los visitantes pueden interactuar con las pantallas para visualizar la ficha técnica, historia y galería de fotos de cada ciclomotor.",
-        imgPrincipal: "../img/Logo-Museo.png", 
+        // Rutas corregidas
+        imgPrincipal: "img/Logo-Museo.png", 
         galeria: [
-          "../img/pantalla-inicio-museo.png",    
-          "../img/pagina-modelo-museo.png",    
-          "../img/carga-items-museo.png",      
-          "../img/pantalla-bloqueo-museo.png", 
+          "img/pantalla-inicio-museo.png",    
+          "img/pagina-modelo-museo.png",    
+          "img/carga-items-museo.png",      
+          "img/pantalla-bloqueo-museo.png", 
         ],
         tecnologias: [
-          { nombre: "JavaScript", icono: "../icons/js.png" },
-          { nombre: "HTML5", icono: "../icons/html5.png" },
-          { nombre: "CSS3", icono: "../icons/css3.png" },
-          { nombre: "SQL", icono: "../icons/Sql.png" } 
+          { nombre: "JavaScript", icono: "icons/js.png" },
+          { nombre: "HTML5", icono: "icons/html5.png" },
+          { nombre: "CSS3", icono: "icons/css3.png" },
+          { nombre: "SQL", icono: "icons/Sql.png" } 
         ],
       },
 
-      "snackway": { // CAMBIO DE ID "3" a "snackway" para consistencia
+      "snackway": {
         titulo: "SnackWay",
         descripcion: "Plataforma e-commerce gastronómica diseñada para optimizar la experiencia de pedido online. El sistema cuenta con un catálogo interactivo de productos (hamburguesas, bebidas, etc.), carrito de compras y un módulo de autenticación de usuarios. Incluye un panel administrativo ('Back Office') que permite la carga y gestión de productos en tiempo real. La interfaz destaca por su diseño vibrante y navegación intuitiva.",
-        imgPrincipal: "../img/logo-snackway.png", 
+        // Rutas corregidas
+        imgPrincipal: "img/logo-snackway.png", 
         galeria: [
-          "../img/snackway-home.jpg",     
-          "../img/snackway-captura1.png",     
-          "../img/snackway-captura2.png",   
-          "../img/snackway-captura3.png",   
-          "../img/snackway-login.png"        
+          "img/snackway-home.jpg",     
+          "img/snackway-captura1.png",     
+          "img/snackway-captura2.png",   
+          "img/snackway-captura3.png",   
+          "img/snackway-login.png"        
         ],
         tecnologias: [
-          { nombre: "HTML5", icono: "../icons/html5.png" },
-          { nombre: "CSS3", icono: "../icons/css3.png" },
-          { nombre: "JavaScript", icono: "../icons/js.png" },
-          { nombre: "Figma", icono: "../icons/figma.png" }
+          { nombre: "HTML5", icono: "icons/html5.png" },
+          { nombre: "CSS3", icono: "icons/css3.png" },
+          { nombre: "JavaScript", icono: "icons/js.png" },
+          { nombre: "Figma", icono: "icons/figma.png" }
         ],
       },
     };
@@ -109,16 +112,15 @@
 
     toggleButton.addEventListener('click', (event) => {
       const toggleLogic = () => {
-        // Al hacer click, toggle devuelve true si puso la clase, false si la sacó.
         const isDark = body.classList.toggle('dark-mode');
         
         if (isDark) {
-          // Si activamos modo oscuro -> Ponemos el Sol (para volver a claro)
-          themeIcon.src = "../img/sun.png"; 
+          // Rutas corregidas
+          themeIcon.src = "img/sun.png"; 
           themeIcon.alt = "Sol";
         } else {
-          // Si sacamos modo oscuro -> Ponemos la Luna (para volver a oscuro)
-          themeIcon.src = "../img/moon.png";
+          // Rutas corregidas
+          themeIcon.src = "img/moon.png";
           themeIcon.alt = "Luna";
         }
       };
@@ -148,7 +150,6 @@
     const params = new URLSearchParams(window.location.search);
     let id = params.get('id');
 
-    // Mapeo simple por si llegan IDs numéricos viejos
     if (id === "2") id = "museo";
     if (id === "3") id = "snackway";
 
@@ -189,7 +190,6 @@
       }
 
       const linksContainer = document.getElementById('links-container');
-      // Limpiamos por las dudas
       linksContainer.innerHTML = ''; 
       
       if (proyecto.repoLink) {
