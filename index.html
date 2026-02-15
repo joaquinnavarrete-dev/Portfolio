@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Joaquín Navarrete | Web Developer</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
@@ -203,30 +204,31 @@
     const themeIcon = document.getElementById('theme-icon');
     const body = document.body;
 
+    // Lógica para cambiar el tema.
     toggleButton.addEventListener('click', (event) => {
       
       const toggleLogic = () => {
-        // Al hacer click, toggle devuelve true si puso la clase, false si la sacó.
+        // Toggle devuelve 'true' si agrega la clase, 'false' si la saca.
         const isDark = body.classList.toggle('dark-mode');
         
         if (isDark) {
-          // Si activamos modo oscuro -> Ponemos el Sol (para poder volver a claro)
-          // Rutas corregidas
+          // Si activamos modo oscuro, ponemos el Sol para poder volver a claro.
           themeIcon.src = "img/sun.png"; 
           themeIcon.alt = "Sol";
         } else {
-          // Si sacamos modo oscuro -> Ponemos la Luna (para volver a oscuro)
-          // Rutas corregidas
+          // Si sacamos el modo oscuro, ponemos la Luna.
           themeIcon.src = "img/moon.png";
           themeIcon.alt = "Luna";
         }
       };
 
+      // Si el navegador no banca la API de transiciones, cambiamos de una.
       if (!document.startViewTransition) {
         toggleLogic();
         return;
       }
 
+      // Calculamos el radio para el efecto circular (quedó tremendo esto).
       const x = event.clientX;
       const y = event.clientY;
 
@@ -235,6 +237,7 @@
         Math.max(y, innerHeight - y)
       );
 
+      // Arrancamos la transición.
       const transition = document.startViewTransition(() => {
         toggleLogic();
       });

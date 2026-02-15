@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalle del Proyecto</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="css/proyecto.css">
 </head>
 
@@ -44,11 +45,12 @@
 
   <script>
     /* --- 1. BASE DE DATOS DE PROYECTOS --- */
+    /* Importante: Acá definí toda la info. Fijate que limpié todas las rutas de imágenes e iconos 
+       para que no tengan el '../'. Ahora buscan directo en la carpeta. */
     const proyectosData = {
       "filmfinder": {
         titulo: "FilmFinder",
         descripcion: "Plataforma web Full Stack diseñada para la exploración de catálogos cinematográficos. El sistema permite a los usuarios buscar películas en tiempo real, aplicar filtros por categoría o calificación, y acceder a fichas técnicas detalladas. Incluye un módulo social para dejar comentarios y un formulario de contacto funcional. UI diseñada en Figma.",
-        // Rutas corregidas
         imgPrincipal: "img/FilmFinder.png", 
         galeria: [
           "img/inicio-film-finderpng.png",
@@ -68,7 +70,6 @@
       "museo": {
         titulo: "Museo del Ciclomotor",
         descripcion: "Sistema de software desarrollado para tótems inteligentes interactivos dentro del museo. La aplicación gestiona la base de datos completa de la colección, permitiendo el ABM (Alta, Baja y Modificación) de los vehículos. Cuenta con un sistema de 'bajas lógicas' para recuperar ítems eliminados, buscador por código interno y un panel de edición robusto. Los visitantes pueden interactuar con las pantallas para visualizar la ficha técnica, historia y galería de fotos de cada ciclomotor.",
-        // Rutas corregidas
         imgPrincipal: "img/Logo-Museo.png", 
         galeria: [
           "img/pantalla-inicio-museo.png",    
@@ -87,7 +88,6 @@
       "snackway": {
         titulo: "SnackWay",
         descripcion: "Plataforma e-commerce gastronómica diseñada para optimizar la experiencia de pedido online. El sistema cuenta con un catálogo interactivo de productos (hamburguesas, bebidas, etc.), carrito de compras y un módulo de autenticación de usuarios. Incluye un panel administrativo ('Back Office') que permite la carga y gestión de productos en tiempo real. La interfaz destaca por su diseño vibrante y navegación intuitiva.",
-        // Rutas corregidas
         imgPrincipal: "img/logo-snackway.png", 
         galeria: [
           "img/snackway-home.jpg",     
@@ -115,11 +115,11 @@
         const isDark = body.classList.toggle('dark-mode');
         
         if (isDark) {
-          // Rutas corregidas
+          // Si activamos modo oscuro, ponemos el Sol. Rutas limpias.
           themeIcon.src = "img/sun.png"; 
           themeIcon.alt = "Sol";
         } else {
-          // Rutas corregidas
+          // Si pasamos a claro, ponemos la Luna.
           themeIcon.src = "img/moon.png";
           themeIcon.alt = "Luna";
         }
@@ -150,6 +150,7 @@
     const params = new URLSearchParams(window.location.search);
     let id = params.get('id');
 
+    // Esto es un parche por si quedó algún link viejo con ID numérico.
     if (id === "2") id = "museo";
     if (id === "3") id = "snackway";
 

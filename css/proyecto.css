@@ -1,74 +1,69 @@
-/* --- VARIABLES CSS (COLORES) --- */
+/* --- VARIABLES Y COLORES (La paleta del sitio) --- */
 :root {
   --bg-color: #ffffff;
   --text-color: #000000;
   --card-bg: #f4f4f4;
-  /* Modo claro: gradiente suave similar a la home */
+  /* Modo claro: gradiente suave, parecido al del home */
   --gradient-overlay: linear-gradient(rgba(100, 0, 167, 0.342), rgba(0, 4, 255, 0.2));
 }
 
-/* --- MODO OSCURO --- */
+/* --- MODO OSCURO (Para no quemar retinas a la noche) --- */
 body.dark-mode {
   --bg-color: #121212;
   --text-color: #e0e0e0;
   --card-bg: #1e1e1e;
-  /* Modo oscuro: oscurecemos el gradiente */
+  /* Acá oscurecemos un toque el gradiente para que no encandile */
   --gradient-overlay: linear-gradient(rgba(247, 0, 255, 0.1), rgba(0, 4, 255, 0.2));
 }
-
-
-
 
 html {
   height: 100%;
   font-family: 'Nunito', sans-serif;
   scroll-behavior: smooth;
- 
 }
 
 body {
-  /* Color de fondo base (blanco o negro) */
+  /* Fondo base */
   background-color: var(--bg-color);
   
-  /* Gradiente encima */
+  /* Gradiente arriba */
   background-image: var(--gradient-overlay);
   
-  /* --- LA SOLUCIÓN MÁGICA --- */
-  background-attachment: fixed; /* El fondo se queda quieto al scrollear */
-  background-size: cover;       /* Cubre toda la pantalla siempre */
-  background-repeat: no-repeat; /* No se repite como mosaico */
-  /* -------------------------- */
+  /* --- LA SOLUCIÓN MÁGICA PARA EL FONDO --- */
+  /* Esto hace que el fondo se quede clavado mientras scrolleas el contenido */
+  background-attachment: fixed; 
+  background-size: cover;       
+  background-repeat: no-repeat; 
+  /* ---------------------------------------- */
   
-  /* Color de texto dinámico */
   color: var(--text-color);
   
-  /* Transición suave para los cambios */
+  /* Transición suave para cuando cambiamos de tema */
   transition: background-color 0.3s ease, color 0.3s ease;
 
-  /* Flexbox para centrar contenido */
+  /* Flexbox para centrar todo */
   display: flex;
   flex-direction: column;
   align-items: center;
   
-  /* Asegura que tenga altura mínima */
   min-height: 100vh;
-  margin: 0; /* Importante para evitar bordes blancos */
+  margin: 0; /* Chau bordes blancos molestos */
 }
 
-/* --- BOTÓN DE TEMA (AGREGADO Y CORREGIDO) --- */
+/* --- BOTÓN FLOTANTE DEL TEMA --- */
 .theme-btn {
   position: fixed;
   top: 20px;
   right: 20px;
   background: rgba(8, 8, 8, 0.425);
-  border: 2px solid var(--text-color); /* Borde dinámico */
+  border: 2px solid var(--text-color); /* El borde cambia de color según el tema */
   color: var(--text-color);
   border-radius: 50%;
   width: 50px;
   height: 50px;
   font-size: 24px;
   cursor: pointer;
-  z-index: 10000;
+  z-index: 10000; /* Siempre arriba de todo */
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -83,11 +78,11 @@ body {
 }
 
 .theme-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Efecto pop al pasar el mouse */
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* --- VIEW TRANSITION API (EL EFECTO CIRCULAR) --- */
+/* --- ANIMACIÓN CIRCULAR DEL CAMBIO DE TEMA --- */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -96,14 +91,14 @@ body {
 ::view-transition-old(root) { z-index: 1; }
 ::view-transition-new(root) { z-index: 9999; }
 
-/* --- ESTILOS PARA LA PÁGINA DE DETALLES --- */
+/* --- ESTILOS DE LA FICHA DEL PROYECTO --- */
 .detalle-container {
   width: 100%; 
   max-width: 900px;
   margin: 40px auto;
   padding: 30px;
   
-  /* Usamos la variable de fondo de tarjeta para que cambie en modo oscuro */
+  /* Fondo de la tarjeta con un gradiente sutil */
   background: linear-gradient(rgba(247, 0, 255, 0.425), rgba(0, 4, 255, 0.2));
   color: var(--text-color);
   
@@ -113,13 +108,14 @@ body {
 }
 
 .detalle-header {
-  display: flex;           /* Activamos el modo flexible */
-  flex-direction: column;  /* Ponemos el título arriba de la foto */
-  align-items: center;     /* ESTO es lo que centra la imagen horizontalmente */
-  text-align: center;      /* Esto centra el texto del título */
-  margin-bottom: 20px;     /* Un poco de aire abajo del encabezado */
+  display: flex;           /* Modo flexible activado */
+  flex-direction: column;  /* Título arriba, foto abajo */
+  align-items: center;     /* Centramos la imagen horizontalmente */
+  text-align: center;      /* Centramos el texto */
+  margin-bottom: 20px;    
 }
 
+/* Botón de volver (arriba a la izquierda) */
 .back-btn {
   align-self: flex-start; 
   margin: 20px 0 0 20px; 
@@ -133,7 +129,7 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-
+/* Botón de volver (abajo del todo, con gradiente) */
 .back-btn2 { 
   margin: 20px 20px 30px 20px; 
   text-decoration: none;
@@ -146,45 +142,44 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-
 .back-btn:hover {
   background: rgba(128, 128, 128, 0.3);
 }
 
-/* Títulos */
 h1, h2 {
   color: var(--text-color);
 }
 
+/* --- IMAGEN PRINCIPAL DEL PROYECTO --- */
 .main-img-detalle {
-  width: 100%;             /* Cambié a 100% (con un max-width) para que sea responsive */
-  max-width: 500px;        /* Tope de ancho para que no sea gigante en PC */
-  height: 500px;            /* Altura automática para no deformar la foto */
-  aspect-ratio: 16/9;      /* Opcional: mantiene formato cine. Si querés cuadrada borralo */
-  object-fit: cover;
+  width: 100%;             
+  max-width: 500px;        /* Tope para que no se vaya de mambo en PC */
+  height: 500px;           
+  aspect-ratio: 16/9;      /* Formato cine */
+  object-fit: cover;       /* Recorta para llenar sin deformar */
   border-radius: 40px;
-  margin: 20px auto;       /* El 'auto' a los costados ayuda a centrar si falla el flex */
+  margin: 20px auto;       /* El 'auto' ayuda a centrar si falla el flex */
   border: 2px solid rgba(247, 0, 255, 0.3);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Un toque de sombra para que resalte */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
 }
 
+/* --- GRILLA DE LA GALERÍA --- */
 .gallery-grid {
   display: grid;
   
-  /* ESTO ES LO QUE CENTRA LOS ITEMS ADENTRO DE LAS CELDAS */
+  /* Esto centra las fotos adentro de cada celda */
   place-items: center; 
   
-  /* CAMBIO CLAVE: Puse 300px en vez de 100%. 
-     Así entran varias fotos si hay espacio (Desktop) y una sola si es celu. */
+  /* OJO ACÁ: Puse 600px para que se vean grandes en PC */
   grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
   
   gap: 15px;
   margin-top: 15px;
-  width: 100%; /* Asegurate que ocupe todo el ancho */
+  width: 100%; 
 }
+
 .gallery-grid img {
-  
-  width: 70%;
+  width: 70%;  /* Achicamos un poco la imagen dentro de su celda */
   height: 100%; 
   object-fit: cover;
   border-radius: 30px;
@@ -194,9 +189,10 @@ h1, h2 {
 }
 
 .gallery-grid img:hover {
-  transform: scale(1.03);
+  transform: scale(1.03); /* Efecto zoom sutil */
 }
 
+/* --- BADGES DE TECNOLOGÍAS --- */
 .tech-stack-detalle {
   display: flex;
   flex-wrap: wrap; 
@@ -205,7 +201,6 @@ h1, h2 {
   margin-top: 20px;
 }
 
-/* Estilo para las badges de tecnología en detalle */
 .tech-badge {
   background-color: rgba(128, 128, 128, 0.15);
   color: var(--text-color);
@@ -216,6 +211,7 @@ h1, h2 {
   align-items: center;
 }
 
+/* --- LINKS DEL PROYECTO (Repo y Demo) --- */
 .links-proyecto {
   display: flex;
   gap: 20px;

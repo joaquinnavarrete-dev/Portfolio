@@ -1,22 +1,22 @@
-/* --- VARIABLES CSS (COLORES) --- */
+/* --- VARIABLES GLOBALES (La paleta de colores) --- */
 :root {
   --bg-color: #ffffff;
   --text-color: #000000;
   --card-bg: #f4f4f4;
-  /* Modo claro: superposición suave */
+  /* Modo claro: oscurecemos un toque la foto de fondo para que se lea el texto */
   --hero-overlay: rgba(0, 0, 0, 0.493); 
 }
 
-/* --- MODO OSCURO --- */
+/* --- MODO OSCURO (Activado por la clase en el body) --- */
 body.dark-mode {
   --bg-color: #121212;
   --text-color: #e0e0e0;
   --card-bg: #1e1e1e;
-  /* Modo oscuro: fondo más apagado */
+  /* Modo oscuro: el overlay es más suave porque el fondo ya es oscuro */
   --hero-overlay: rgba(0, 0, 0, 0.089); 
 }
 
-/* Reset básico */
+/* Reset básico para sacar márgenes molestos del navegador */
 * {
   margin: 0;
   padding: 0;
@@ -26,42 +26,42 @@ body.dark-mode {
 html {
   height: 100%;
   font-family: 'Nunito', sans-serif;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* Esto hace que al hacer click en "Sobre mí" baje suavecitooo */
 }
 
 body {
   min-height: 100vh;
   background-color: var(--bg-color);
   color: var(--text-color);
+  /* Transición suave para cuando cambiás de tema claro a oscuro */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* --- CONTENEDOR PRINCIPAL --- */
+/* --- CONTENEDOR PRINCIPAL (El fondo degradado violeta/azul) --- */
 .main-container {
   background: linear-gradient(rgba(247, 0, 255, 0.13), rgba(0, 4, 255, 0.479));
   display: flex;
-  flex-direction: column; /* Apila .top-section, .formacion y .contacto */
+  flex-direction: column; /* Apila las secciones verticalmente */
   align-items: center;
   width: 100%;
   padding: 2rem 1rem;
 }
 
-/* --- CONTENEDOR DE LA FILA SUPERIOR (NUEVO) --- */
-/* Esto controla que About y Habilidades estén lado a lado */
+/* --- FILA SUPERIOR (About + Habilidades lado a lado) --- */
 .top-section {
   display: flex;
-  flex-direction: row;      /* Lado a lado */
-  flex-wrap: wrap;          /* Si no entra (celular), baja */
-  justify-content: center;  /* Centrado en pantalla */
-  align-items: flex-start;  /* Alineados arriba */
-  gap: 30px;                /* Espacio entre los dos bloques */
+  flex-direction: row;      /* Las pone una al lado de la otra */
+  flex-wrap: wrap;          /* Si es celular (pantalla chica), baja una abajo de la otra */
+  justify-content: center;  
+  align-items: flex-start;  
+  gap: 30px;                /* Espacio entre las cajas */
   width: 100%;
-  max-width: 1400px;        /* Ancho máximo para que no se estire infinito */
+  max-width: 1400px;        /* Tope de ancho para monitores grandes */
   margin-bottom: 4rem;
   margin-top: 4rem;
 }
 
-/* --- ESTILOS DEL BOTÓN FLOTANTE --- */
+/* --- BOTÓN FLOTANTE DEL TEMA (Sol/Luna) --- */
 .theme-btn {
   position: fixed;
   top: 20px;
@@ -74,7 +74,7 @@ body {
   height: 50px;
   font-size: 24px;
   cursor: pointer;
-  z-index: 10000;
+  z-index: 10000; /* Siempre arriba de todo */
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -89,57 +89,56 @@ body {
 }
 
 .theme-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Efecto pop al pasar el mouse */
   background: rgba(255, 255, 255, 0.5);
 }
 
+/* --- ESTILOS DE BOTONES Y LINKS --- */
 .btn-ver-mas {
-  text-decoration: none;    /* Chau subrayado */
-  color: var(--text-color); /* Magia: Negro en modo claro, Blanco en modo oscuro */
-  font-weight: bold;        /* Opcional: Para que resalte un poquito más */
-  transition: color 0.3s ease; /* Para que el cambio de color sea suave */
+  text-decoration: none;    /* Chau subrayado feo */
+  color: var(--text-color); /* Se adapta al tema automáticamente */
+  font-weight: bold;        
+  transition: color 0.3s ease; 
 }
 
-/* Opcional: Un efectito cuando pasás el mouse por encima */
 .btn-ver-mas:hover {
   opacity: 0.8; 
 }
 
-
+/* --- CONTENEDOR INFERIOR (Formación + Contacto) --- */
 .info-row {
-  color: white;
+  color: white; /* Estas secciones siempre tienen fondo oscuro, así que texto blanco */
   display: grid;
   grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
-  gap: 40px; /* Espacio entre ellas */
+  gap: 40px; 
   width: 100%;
-  max-width: 1500px; /* Ancho máximo para que no se estire demasiado */
-  margin: 40px auto; /* Centrado */
-  align-items: start; /* Alineación superior */
+  max-width: 1500px; 
+  margin: 40px auto; 
+  align-items: start; 
 }
 
-/* --- ESTILOS PARA LOS LINKS DE CONTACTO --- */
+/* Links de contacto */
 .contact-link {
-  color: white; /* Usa la variable del tema (claro/oscuro) */
+  color: white; 
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .contact-link:hover {
-  color: #f700ff; /* Color de acento al pasar el mouse */
+  color: #f700ff; /* Color fucsia al pasar el mouse */
   text-decoration: underline;
 }
 
-/* --- RESPONSIVE: CELULARES (Se apilan uno abajo del otro) --- */
+/* Responsive para celulares: que se apilen verticalmente */
 @media (max-width: 768px) {
   .info-row {
-    grid-template-columns: 1fr; /* Una sola columna */
+    grid-template-columns: 1fr; 
     gap: 30px;
   }
 }
 
-
-/* --- VIEW TRANSITION API --- */
+/* --- ANIMACIÓN CIRCULAR DE CAMBIO DE TEMA --- */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -148,21 +147,22 @@ body {
 ::view-transition-old(root) { z-index: 1; }
 ::view-transition-new(root) { z-index: 9999; }
 
-/* --- HERO SECTION --- */
+/* --- HERO SECTION (La portada) --- */
 .hero {
   position: relative;
-  height: 100vh;
+  height: 100vh; /* Ocupa toda la pantalla */
+  
   background: linear-gradient(
       rgba(247, 0, 255, 0.623),
       rgba(0, 4, 255, 0.479)
     ),
     url('../img/fondo_index.jpg') center/cover no-repeat;
+    
   display: flex;
   justify-content: center;
   align-items: center;
   color: white; 
   text-align: center;
-  
 }
 
 .overlay {
@@ -171,7 +171,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--hero-overlay);
+  background: var(--hero-overlay); /* Oscurece la foto según el tema */
   transition: background 0.5s ease;
 }
 
@@ -181,11 +181,12 @@ body {
   padding: 2rem;
 }
 
+/* Foto de perfil */
 .profile {
   height: 250px;
   width: 250px;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 50%; /* Redondita */
   margin-bottom: 1rem;
   border: 4px solid rgba(255, 255, 255, 0.3);
   filter: brightness(100%);
@@ -208,33 +209,28 @@ body {
   color: #333;
 }
 
-/* --- ESTILOS GENERALES DE SECCIONES --- */
+/* --- TÍTULOS GENERALES --- */
 h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   text-align: center;
 }
 
-/* --- SECCIÓN SOBRE MÍ (MODIFICADA PARA ENTRAR EN LA FILA) --- */
+/* --- SECCIÓN SOBRE MÍ --- */
 #about {
-  /* Flex: crece (1), se encoge (1), base ideal (400px) */
-  flex: 1 1 400px;
+  flex: 1 1 400px; /* Tamaño flexible */
   background: linear-gradient(rgba(247, 0, 255, 0.623), rgba(0, 4, 255, 0.479));
   padding: 95px;
   border-radius: 30px;
   color: white;
   text-align: center;
-  /* Altura automática para ajustarse al contenido */
-
 }
 
 #about h2 { color: white; }
 
-/* --- SECCIÓN HABILIDADES (MODIFICADA PARA ENTRAR EN LA FILA) --- */
+/* --- SECCIÓN HABILIDADES --- */
 #habilidades {
-  /* Flex: crece un poco más (1.5), se encoge (1), base ideal (600px) */
-  flex: 1.5 1 500px;
-  
+  flex: 1.5 1 500px; /* Ocupa un poco más de espacio que el About */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,7 +238,6 @@ h2 {
 
 .skills-grid {
   display: grid;
-  /* Responsive: columnas de mínimo 220px */
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
   gap: 15px;
   width: 100%;
@@ -259,7 +254,7 @@ h2 {
 }
 
 .skill-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* Efecto de levitación */
 }
 
 .skill-card h3 {
@@ -277,6 +272,7 @@ h2 {
   gap: 8px;
 }
 
+/* Etiquetas de tecnologías (Badges) */
 .skill-tags span {
   background-color: rgba(128, 128, 128, 0.1);
   color: var(--text-color);
@@ -301,7 +297,7 @@ h2 {
   cursor: default;
 }
 
-
+/* --- CONTENEDOR DE PROYECTOS --- */
 .proyects-container{
  background: linear-gradient(rgba(247, 0, 255, 0.623), rgba(0, 4, 255, 0.479));
  padding: 100px;
@@ -311,44 +307,42 @@ h2 {
  text-align: center;
 }
 
-/* --- SECCIÓN PROYECTOS --- */
 #proyectos {
   width: 100%;
-  max-width: 1700px; /* Un poco más ancho para que entren 3 cómodos */
+  max-width: 1700px; 
   margin: 0 auto 4rem auto;
   text-align: center;
 }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Corregí el minmax a 300px para que no queden muy finitas */
   gap: 40px;
-  /* AGREGÁ ESTO: Alinea los items al inicio verticalmente */
   align-items: start; 
 }
 
 .project-card {
   background-color: var(--card-bg);
   border-radius: 40px;
-  overflow: hidden; /* Para que la imagen respete el borde redondeado */
+  overflow: hidden; 
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
-  cursor: pointer; /* Manito para indicar que es clickeable */
+  cursor: pointer; /* Manito para indicar click */
   border: 1px solid rgba(128, 128, 128, 0.1);
   display: flex;
   flex-direction: column;
 }
 
 .project-card img {
-  height: 500px;
+  height: 300px; /* Ajusté la altura para que no quede TAN alta */
+  object-fit: cover;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(247, 0, 255, 0.2); /* Resplandor violeta suave */
+  box-shadow: 0 8px 25px rgba(247, 0, 255, 0.2); /* Resplandor al pasar el mouse */
 }
 
-/* Imagen Principal del Proyecto */
 .project-main-img {
   width: 100%;
   height: 200px;
@@ -356,7 +350,6 @@ h2 {
   border-bottom: 2px solid rgba(247, 0, 255, 0.5);
 }
 
-/* Contenido visible siempre */
 .project-info {
   padding: 20px;
 }
@@ -372,103 +365,25 @@ h2 {
   margin-bottom: 15px;
 }
 
-.click-hint {
-  font-size: 0.8rem;
-  color: rgba(247, 0, 255, 0.8);
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* --- SECCIÓN OCULTA (DETALLES) --- */
-.project-details {
-  display: none; /* Oculto por defecto */
-  padding: 0 20px 20px 20px;
-  background-color: rgba(0,0,0,0.02);
-  border-top: 1px solid rgba(128,128,128,0.1);
-  animation: fadeIn 0.7s ease;
-}
-
-/* Cuando la tarjeta tiene la clase 'active', mostramos los detalles */
-.project-card.active .project-details {
-  display: block;
-}
-
-.project-card.active {
-  border: 2px solid rgba(247, 0, 255, 0.5); /* Borde destacado al abrir */
-}
-
-/* Galería de capturas (Scroll horizontal) */
-.gallery {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto; /* Permite deslizar si hay muchas fotos */
-  padding: 15px 0;
-  margin-bottom: 15px;
-  scroll-behavior: smooth;
-}
-
-
-
-
-
-
-
-/* Barra de scroll estilizada fina */
-.gallery::-webkit-scrollbar { height: 6px; }
-.gallery::-webkit-scrollbar-thumb { background: rgba(247, 0, 255, 0.5); border-radius: 10px; }
-
-.gallery img {
-  height: 120px; /* Altura fija, ancho automático */
-  border-radius: 8px;
-  transition: transform 0.2s;
-  border: 1px solid rgba(128,128,128,0.2);
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-}
-
-/* Tecnologías usadas (reutilizando estilos de skills) */
-.tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-}
-
-.tech-badge {
-  background-color: rgba(128, 128, 128, 0.15);
-  color: var(--text-color);
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-/* Animación suave al abrir */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-
-
-/* --- FORMACIÓN (SE MANTIENE IGUAL, OCUPA TODO EL ANCHO ABAJO) --- */
-#formacion {
+/* --- SECCIONES DE FORMACIÓN Y CONTACTO --- */
+/* Estas usan estilos compartidos para mantener coherencia */
+#formacion, #contacto {
   background: linear-gradient(rgba(247, 0, 255, 0.623), rgba(0, 4, 255, 0.479));
   padding: 40px;
   border-radius: 30px;
   width: 100%;
   max-width: 800px;
-  margin-bottom: 4rem;
   color: white;
+  /* El margen y alineación lo maneja el grid padre (.info-row) */
+}
+
+#contacto {
+  text-align: center;
 }
 
 .education-list {
   list-style: none;
   padding: 0;
-  
 }
 
 .edu-item {
@@ -497,17 +412,6 @@ h2 {
 .edu-institution {
   font-size: 0.95rem;
   opacity: 0.85;
-}
-
-/* --- CONTACTO --- */
-#contacto {
-  background: linear-gradient(rgba(247, 0, 255, 0.623), rgba(0, 4, 255, 0.479));
-  padding: 40px;
-  border-radius: 30px;
-  width: 100%;
-  max-width: 800px;
-  text-align: center;
-  margin-bottom: 4rem;
 }
 
 /* --- FOOTER --- */
