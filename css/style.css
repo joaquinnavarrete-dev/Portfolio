@@ -293,6 +293,10 @@ h2 {
   flex-direction: column;
 }
 
+.project-card img {
+  height: 500px;
+}
+
 .project-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(247, 0, 255, 0.2); /* Resplandor violeta suave */

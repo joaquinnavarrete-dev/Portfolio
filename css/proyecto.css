@@ -123,6 +123,20 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+
+.back-btn2 { 
+  margin: 20px 20px 30px 20px; 
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 20px 30px;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #f700ff, #0004ff);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+
 .back-btn:hover {
   background: rgba(128, 128, 128, 0.3);
 }
@@ -146,13 +160,21 @@ h1, h2 {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  
+  /* ESTO ES LO QUE CENTRA LOS ITEMS ADENTRO DE LAS CELDAS */
+  place-items: center; 
+  
+  /* CAMBIO CLAVE: Puse 300px en vez de 100%. 
+     Así entran varias fotos si hay espacio (Desktop) y una sola si es celu. */
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  
   gap: 15px;
   margin-top: 15px;
+  width: 100%; /* Asegurate que ocupe todo el ancho */
 }
-
 .gallery-grid img {
-  width: 60%;
+  
+  width: 70%;
   height: 100%; 
   object-fit: cover;
   border-radius: 30px;

@@ -40,6 +40,8 @@
 
   </main>
 
+  <a href="index.html" class="back-btn2">← Volver al Portfolio</a>
+
   <script>
     /* --- 1. BASE DE DATOS DE PROYECTOS --- */
     const proyectosData = {
@@ -99,6 +101,35 @@
         repoLink: "#", // Poné el link si tenés, o dejalo así
         demoLink: null
       },
+
+      "3": {
+        titulo: "SnackWay",
+        descripcion: "Plataforma e-commerce gastronómica diseñada para optimizar la experiencia de pedido online. El sistema cuenta con un catálogo interactivo de productos (hamburguesas, bebidas, etc.), carrito de compras y un módulo de autenticación de usuarios. Incluye un panel administrativo ('Back Office') que permite la carga y gestión de productos en tiempo real. La interfaz destaca por su diseño vibrante y navegación intuitiva.",
+        
+        // Usamos el Home como imagen principal porque impacta más
+        imgPrincipal: "../img/logo-snackway.png", 
+        
+        galeria: [
+          "../img/snackway-home.jpg",     
+          "../img/snackway-captura1.png",     
+          "../img/snackway-captura2.png",   
+          "../img/snackway-captura3.png",   
+          "../img/snackway-login.png"        
+        ],
+        
+        tecnologias: [
+          { nombre: "HTML5", icono: "../icons/html5.png" },
+          { nombre: "CSS3", icono: "../icons/css3.png" },
+          { nombre: "JavaScript", icono: "../icons/js.png" },
+          { nombre: "Figma", icono: "../icons/figma.png" }
+          // Si usaste PHP o algo más, avisame y lo agregamos
+        ],
+        
+        repoLink: "#", 
+        demoLink: null
+      },
+
+
     };
 
     /* --- 2. LÓGICA DEL MODO OSCURO --- */
