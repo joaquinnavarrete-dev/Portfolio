@@ -7,10 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css" />
 </head>
-<body>
+
+<body class="dark-mode">
 
   <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
-    <img id="theme-icon" src="../img/moon.png" alt="Luna">
+    <img id="theme-icon" src="../img/sun.png" alt="Sol">
   </button>
 
   <header class="hero">
@@ -94,85 +95,104 @@
     </div> 
 
     <div class="proyects-container">
-        <section id="proyectos">
+      <section id="proyectos">
         <h2>Proyectos Destacados</h2>
         
         <div class="projects-grid">
       
-      <article class="project-card">
-        <img src="../img/FilmFinder.png" class="project-main-img" alt="Portada FilmFinder">
-        <div class="project-info">
-          <h3>FilmFinder App</h3>
-          <p>Plataforma de catálogo de películas con filtros avanzados, búsqueda y sistema de comentarios. Backend en Python/Flask.</p>
-          
-          <a href="proyecto.html?id=filmfinder" class="btn-ver-mas">Ver más detalles</a>
-        </div>
-      </article>
+          <article class="project-card" onclick="window.location.href='proyecto.html?id=filmfinder'">
+            <img src="../img/FilmFinder.png" class="project-main-img" alt="Portada FilmFinder">
+            <div class="project-info">
+              <h3>FilmFinder App</h3>
+              <p>Plataforma de catálogo de películas con filtros avanzados, búsqueda y sistema de comentarios. Backend en Python/Flask.</p>
+              
+              <a href="proyecto.html?id=filmfinder" class="btn-ver-mas">Ver más detalles</a>
+            </div>
+          </article>
 
-      <article class="project-card">
-        <img src="../img/Logo-Museo.png" class="project-main-img" alt="">
-        <div class="project-info">
-          <h3>Museo del Ciclomotor</h3>
-          <p>Sistema de software desarrollado para tótems inteligentes interactivos dentro del museo.</p>
-          
-          <a href="proyecto.html?id=2" class="btn-ver-mas">Ver más detalles</a>
-        </div>
-      </article>
+          <article class="project-card" onclick="window.location.href='proyecto.html?id=2'">
+            <img src="../img/Logo-Museo.png" class="project-main-img" alt="Portada Museo">
+            <div class="project-info">
+              <h3>Museo del Ciclomotor</h3>
+              <p>Software para tótems inteligentes con gestión de inventario y galería interactiva para visitantes.</p>
+              
+              <a href="proyecto.html?id=2" class="btn-ver-mas">Ver más detalles</a>
+            </div>
+          </article>
 
-      <article class="project-card">
-        <img src="../img/logo-snackway.png" class="project-main-img" alt="SnackWay Home">
-        
-        <div class="project-info">
-          <h3>SnackWay Delivery</h3>
-          <p>E-commerce de comida rápida con gestión de productos, carrito de compras y panel de administración.</p>
-          
-          <a href="proyecto.html?id=3" class="btn-ver-mas">Ver más detalles</a>
+          <article class="project-card" onclick="window.location.href='proyecto.html?id=3'">
+            <img src="../img/logo-snackway.png" class="project-main-img" alt="SnackWay Home">
+            <div class="project-info">
+              <h3>SnackWay</h3>
+              <p>E-commerce gastronómico completo con carrito de compras, login y panel de administración en tiempo real.</p>
+              
+              <a href="proyecto.html?id=3" class="btn-ver-mas">Ver más detalles</a>
+            </div>
+          </article>
+
         </div>
-      </article>
+      </section>
+    </div>
+
+    <div class="info-row">
+      
+      <section id="formacion">
+        <h2>Formación Académica</h2>
+        <ul class="education-list">
+          
+          <li class="edu-item">
+            <div class="edu-header"><strong>Programador Universitario en Informática</strong></div>
+            <div class="edu-institution">Universidad Nacional de Santiago Del Estero (2021 - Presente)</div>
+          </li>
+
+          <li class="edu-item">
+            <div class="edu-header"><strong>Full Stack Developer</strong></div>
+            <div class="edu-institution">Ministerio de Educación de Buenos Aires (2024)</div>
+          </li>
+
+          <li class="edu-item">
+            <div class="edu-header"><strong>Certificación Inglés B2</strong></div>
+            <div class="edu-institution">Universidad De Buenos Aires (2024)</div>
+          </li>
+
+          <li class="edu-item">
+            <div class="edu-header"><strong>Certificación Alemán A1</strong></div>
+            <div class="edu-institution">Universidad De Buenos Aires (2023)</div>
+          </li>
+
+        </ul>
+      </section>
+
+      <section id="contacto">
+        <h2>Contacto</h2>
+        <ul class="education-list">
+          
+          <li class="edu-item">
+            <div class="edu-header"><strong>Email</strong></div>
+            <div class="edu-institution">
+              📧 <a href="mailto:joaquinnavarrete1@outlook.com" class="contact-link">joaquinnavarrete1@outlook.com</a>
+            </div>
+          </li>
+
+          <li class="edu-item">
+            <div class="edu-header"><strong>Ubicación</strong></div>
+            <div class="edu-institution">📍 Santiago del Estero, Argentina</div>
+          </li>
+
+          <li class="edu-item">
+            <div class="edu-header"><strong>Redes Sociales</strong></div>
+            <div class="edu-institution">
+              <a href="https://github.com/joaquinnavarrete-dev" target="_blank" class="contact-link">GitHub</a> |
+              <a href="https://www.linkedin.com/in/joaqu%C3%ADn-navarrete-476b5a304/" target="_blank" class="contact-link">LinkedIn</a>
+            </div>
+          </li>
+
+        </ul>
+      </section>
 
     </div>
-  </section>
-</div>
 
-
-
-    <section id="formacion">
-      <h2>Formación Académica</h2>
-      <ul class="education-list">
-        
-        <li class="edu-item">
-          <div class="edu-header"><strong>Programador Universitario en Informática</strong></div>
-          <div class="edu-institution">Universidad Nacional de Santiago Del Estero (2021 - Presente)</div>
-        </li>
-
-        <li class="edu-item">
-          <div class="edu-header"><strong>Full Stack Developer</strong></div>
-          <div class="edu-institution">Ministerio de Educación de Buenos Aires (2024)</div>
-        </li>
-
-        <li class="edu-item">
-          <div class="edu-header"><strong>Certificación Inglés B2</strong></div>
-          <div class="edu-institution">Universidad De Buenos Aires (2024)</div>
-        </li>
-
-        <li class="edu-item">
-          <div class="edu-header"><strong>Certificación Alemán A1</strong></div>
-          <div class="edu-institution">Universidad De Buenos Aires (2023)</div>
-        </li>
-
-      </ul>
-    </section>
-
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p>📧 <a href="mailto:joaquinnavarrete1@outlook.com">joaquinnavarrete1@outlook.com</a></p>
-      <p>📍 Santiago del Estero, Argentina</p>
-      <p>
-        <a href="https://github.com/thesuburbia2" target="_blank">GitHub</a> |
-        <a href="https://www.linkedin.com/in/joaqu%C3%ADn-navarrete-476b5a304/" target="_blank" >LinkedIn</a>
-      </p>
-    </section>
-
+    
   </main> 
   
   <footer>
@@ -187,11 +207,15 @@
     toggleButton.addEventListener('click', (event) => {
       
       const toggleLogic = () => {
+        // Al hacer click, toggle devuelve true si puso la clase, false si la sacó.
         const isDark = body.classList.toggle('dark-mode');
+        
         if (isDark) {
+          // Si activamos modo oscuro -> Ponemos el Sol (para poder volver a claro)
           themeIcon.src = "../img/sun.png"; 
           themeIcon.alt = "Sol";
         } else {
+          // Si sacamos modo oscuro -> Ponemos la Luna (para volver a oscuro)
           themeIcon.src = "../img/moon.png";
           themeIcon.alt = "Luna";
         }
@@ -230,15 +254,7 @@
         );
       });
     });
-
-    /* --- FUNCIÓN PARA ABRIR/CERRAR PROYECTOS --- */
-function toggleProject(card) {
-  
-  // 2. Alternar la clase 'active' en la tarjeta clickeada
-  card.classList.toggle('active');
-}
-
-</script>
+  </script>
 
 </body>
 </html>

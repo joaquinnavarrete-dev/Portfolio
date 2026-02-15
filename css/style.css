@@ -93,6 +93,52 @@ body {
   background: rgba(255, 255, 255, 0.5);
 }
 
+.btn-ver-mas {
+  text-decoration: none;    /* Chau subrayado */
+  color: var(--text-color); /* Magia: Negro en modo claro, Blanco en modo oscuro */
+  font-weight: bold;        /* Opcional: Para que resalte un poquito más */
+  transition: color 0.3s ease; /* Para que el cambio de color sea suave */
+}
+
+/* Opcional: Un efectito cuando pasás el mouse por encima */
+.btn-ver-mas:hover {
+  opacity: 0.8; 
+}
+
+
+.info-row {
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  gap: 40px; /* Espacio entre ellas */
+  width: 100%;
+  max-width: 1500px; /* Ancho máximo para que no se estire demasiado */
+  margin: 40px auto; /* Centrado */
+  align-items: start; /* Alineación superior */
+}
+
+/* --- ESTILOS PARA LOS LINKS DE CONTACTO --- */
+.contact-link {
+  color: white; /* Usa la variable del tema (claro/oscuro) */
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: #f700ff; /* Color de acento al pasar el mouse */
+  text-decoration: underline;
+}
+
+/* --- RESPONSIVE: CELULARES (Se apilan uno abajo del otro) --- */
+@media (max-width: 768px) {
+  .info-row {
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 30px;
+  }
+}
+
+
 /* --- VIEW TRANSITION API --- */
 ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -455,6 +501,9 @@ h2 {
 
 /* --- CONTACTO --- */
 #contacto {
+  background: linear-gradient(rgba(247, 0, 255, 0.623), rgba(0, 4, 255, 0.479));
+  padding: 40px;
+  border-radius: 30px;
   width: 100%;
   max-width: 800px;
   text-align: center;

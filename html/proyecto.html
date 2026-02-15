@@ -7,10 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/proyecto.css">
 </head>
-<body>
+
+<body class="dark-mode">
 
   <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
-    <img id="theme-icon" src="../img/moon.png" alt="Luna">
+    <img id="theme-icon" src="../img/sun.png" alt="Sol">
   </button>
 
   <a href="index.html" class="back-btn">← Volver al Portfolio</a>
@@ -37,7 +38,6 @@
       <div class="gallery-grid" id="galeria-container"></div>
     </section>
 
-
   </main>
 
   <a href="index.html" class="back-btn2">← Volver al Portfolio</a>
@@ -45,22 +45,16 @@
   <script>
     /* --- 1. BASE DE DATOS DE PROYECTOS --- */
     const proyectosData = {
-      // CAMBIO CLAVE: El nombre de la propiedad ahora es "filmfinder" para coincidir con el ID
       "filmfinder": {
         titulo: "FilmFinder",
         descripcion: "Plataforma web Full Stack diseñada para la exploración de catálogos cinematográficos. El sistema permite a los usuarios buscar películas en tiempo real, aplicar filtros por categoría o calificación, y acceder a fichas técnicas detalladas. Incluye un módulo social para dejar comentarios y un formulario de contacto funcional. UI diseñada en Figma.",
-        
-        // CORRECCIÓN DE RUTAS: Usamos .png según tu captura de archivos
         imgPrincipal: "../img/FilmFinder.png", 
-        
         galeria: [
           "../img/inicio-film-finderpng.png",
-          "../img/filmfinder_pagina_pelicula.png", // Asumo que es .png por el icono
+          "../img/filmfinder_pagina_pelicula.png", 
           "../img/film-finder-catalogo.png"
         ],
-        
         tecnologias: [
-          // Flask no tiene icono en tu carpeta, repetimos python o podés agregar uno
           { nombre: "Python", icono: "../icons/python.png" },
           { nombre: "Flask", icono: "../icons/python.png" }, 
           { nombre: "JavaScript", icono: "../icons/js.png" },
@@ -68,47 +62,30 @@
           { nombre: "CSS3", icono: "../icons/css3.png" },
           { nombre: "Figma", icono: "../icons/figma.png" }
         ],
-        
-        repoLink: "https://github.com/tuusuario/filmfinder", 
-        demoLink: "https://filmfinder-demo.com" 
       },
       
-      // Podés agregar más proyectos con IDs simples como "2" o nombres como "ecommerce"
-     "2": {
+      "museo": { // CAMBIO DE ID "2" a "museo" para consistencia
         titulo: "Museo del Ciclomotor",
         descripcion: "Sistema de software desarrollado para tótems inteligentes interactivos dentro del museo. La aplicación gestiona la base de datos completa de la colección, permitiendo el ABM (Alta, Baja y Modificación) de los vehículos. Cuenta con un sistema de 'bajas lógicas' para recuperar ítems eliminados, buscador por código interno y un panel de edición robusto. Los visitantes pueden interactuar con las pantallas para visualizar la ficha técnica, historia y galería de fotos de cada ciclomotor.",
-        
-        // Imagen principal (La pantalla de inicio se ve genial como portada)
-        imgPrincipal: "../img//Logo-Museo.png", 
-        
+        imgPrincipal: "../img/Logo-Museo.png", 
         galeria: [
-          "../img//pantalla-inicio-museo.png",    // Vista del detalle
-          "../img//pagina-modelo-museo.png",    // Lista de items
-          "../img/carga-items-museo.png",      // Formulario de carga
-          "../img/pantalla-bloqueo-museo.png", // Pantalla de bloqueo
+          "../img/pantalla-inicio-museo.png",    
+          "../img/pagina-modelo-museo.png",    
+          "../img/carga-items-museo.png",      
+          "../img/pantalla-bloqueo-museo.png", 
         ],
-        
         tecnologias: [
-          // Asumo estas tecnologías por el tipo de sistema (ABM/Gestión)
-          // Si usaste otras, avisame y cambiamos los iconos.
           { nombre: "JavaScript", icono: "../icons/js.png" },
           { nombre: "HTML5", icono: "../icons/html5.png" },
           { nombre: "CSS3", icono: "../icons/css3.png" },
-          // Vi en tu carpeta que tenés "Sql.png" con mayúscula, respetamos eso:
           { nombre: "SQL", icono: "../icons/Sql.png" } 
         ],
-        
-        repoLink: "#", // Poné el link si tenés, o dejalo así
-        demoLink: null
       },
 
-      "3": {
+      "snackway": { // CAMBIO DE ID "3" a "snackway" para consistencia
         titulo: "SnackWay",
         descripcion: "Plataforma e-commerce gastronómica diseñada para optimizar la experiencia de pedido online. El sistema cuenta con un catálogo interactivo de productos (hamburguesas, bebidas, etc.), carrito de compras y un módulo de autenticación de usuarios. Incluye un panel administrativo ('Back Office') que permite la carga y gestión de productos en tiempo real. La interfaz destaca por su diseño vibrante y navegación intuitiva.",
-        
-        // Usamos el Home como imagen principal porque impacta más
         imgPrincipal: "../img/logo-snackway.png", 
-        
         galeria: [
           "../img/snackway-home.jpg",     
           "../img/snackway-captura1.png",     
@@ -116,34 +93,31 @@
           "../img/snackway-captura3.png",   
           "../img/snackway-login.png"        
         ],
-        
         tecnologias: [
           { nombre: "HTML5", icono: "../icons/html5.png" },
           { nombre: "CSS3", icono: "../icons/css3.png" },
           { nombre: "JavaScript", icono: "../icons/js.png" },
           { nombre: "Figma", icono: "../icons/figma.png" }
-          // Si usaste PHP o algo más, avisame y lo agregamos
         ],
-        
-        repoLink: "#", 
-        demoLink: null
       },
-
-
     };
 
-    /* --- 2. LÓGICA DEL MODO OSCURO --- */
+    /* --- 2. LÓGICA DEL MODO OSCURO (INVERTIDA) --- */
     const toggleButton = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const body = document.body;
 
     toggleButton.addEventListener('click', (event) => {
       const toggleLogic = () => {
+        // Al hacer click, toggle devuelve true si puso la clase, false si la sacó.
         const isDark = body.classList.toggle('dark-mode');
+        
         if (isDark) {
+          // Si activamos modo oscuro -> Ponemos el Sol (para volver a claro)
           themeIcon.src = "../img/sun.png"; 
           themeIcon.alt = "Sol";
         } else {
+          // Si sacamos modo oscuro -> Ponemos la Luna (para volver a oscuro)
           themeIcon.src = "../img/moon.png";
           themeIcon.alt = "Luna";
         }
@@ -171,31 +145,28 @@
     });
 
     /* --- 3. LÓGICA DE CARGA DE DATOS --- */
-    // Leemos el ID de la URL
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id'); // Esto trae "filmfinder"
+    let id = params.get('id');
 
-    console.log("ID recibido:", id); // F12 para ver esto en consola
+    // Mapeo simple por si llegan IDs numéricos viejos
+    if (id === "2") id = "museo";
+    if (id === "3") id = "snackway";
 
-    // Verificamos si existe el ID y si hay datos para ese ID
+    console.log("ID procesado:", id);
+
     if (id && proyectosData[id]) {
       const proyecto = proyectosData[id];
       
-      // Rellenar textos
       document.getElementById('titulo-proyecto').innerText = proyecto.titulo;
       document.getElementById('descripcion-proyecto').innerText = proyecto.descripcion;
       
-      // Rellenar imagen principal con manejo de error
       const imgMain = document.getElementById('img-principal');
       imgMain.src = proyecto.imgPrincipal;
       imgMain.style.display = 'block'; 
       imgMain.onerror = function() { 
           console.error("No se encontró la imagen:", proyecto.imgPrincipal);
-          // Opcional: poner una imagen por defecto si falla
-          // this.src = '../img/FilmFinder.png'; 
       };
 
-      // Rellenar Galería
       const galeriaContainer = document.getElementById('galeria-container');
       if(proyecto.galeria && proyecto.galeria.length > 0) {
           proyecto.galeria.forEach(imgSrc => {
@@ -204,11 +175,9 @@
             galeriaContainer.appendChild(img);
           });
       } else {
-          // Ocultar la sección si no hay fotos
           document.querySelector('.detalle-galeria').style.display = 'none';
       }
 
-      // Rellenar Tecnologías
       const stackContainer = document.getElementById('stack-container');
       if(proyecto.tecnologias && proyecto.tecnologias.length > 0) {
           proyecto.tecnologias.forEach(tech => {
@@ -219,8 +188,10 @@
           });
       }
 
-      // Rellenar Links
       const linksContainer = document.getElementById('links-container');
+      // Limpiamos por las dudas
+      linksContainer.innerHTML = ''; 
+      
       if (proyecto.repoLink) {
         linksContainer.innerHTML += `<a href="${proyecto.repoLink}" target="_blank" class="cta-small">Ver Repositorio</a>`;
       }
@@ -229,7 +200,6 @@
       }
 
     } else {
-      // Si entra acá es porque el ID de la URL no coincide con las claves de 'proyectosData'
       console.error("ID no encontrado en la base de datos:", id);
       document.querySelector('.detalle-container').innerHTML = `
         <div style="text-align:center;">
