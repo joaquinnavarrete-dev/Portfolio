@@ -1,4 +1,4 @@
-/* --- VARIABLES Y COLORES (La paleta del sitio) --- */
+/* --- VARIABLES GLOBALES --- */
 :root {
   --bg-color: #ffffff;
   --text-color: #000000;
@@ -7,12 +7,11 @@
   --gradient-overlay: linear-gradient(rgba(100, 0, 167, 0.342), rgba(0, 4, 255, 0.2));
 }
 
-/* --- MODO OSCURO (Para no quemar retinas a la noche) --- */
+/* --- MODO OSCURO --- */
 body.dark-mode {
   --bg-color: #121212;
   --text-color: #e0e0e0;
   --card-bg: #1e1e1e;
-  /* Acá oscurecemos un toque el gradiente para que no encandile */
   --gradient-overlay: linear-gradient(rgba(247, 0, 255, 0.1), rgba(0, 4, 255, 0.2));
 }
 
@@ -23,31 +22,19 @@ html {
 }
 
 body {
-  /* Fondo base */
   background-color: var(--bg-color);
-  
-  /* Gradiente arriba */
   background-image: var(--gradient-overlay);
-  
-  /* --- LA SOLUCIÓN MÁGICA PARA EL FONDO --- */
-  /* Esto hace que el fondo se quede clavado mientras scrolleas el contenido */
   background-attachment: fixed; 
   background-size: cover;       
   background-repeat: no-repeat; 
-  /* ---------------------------------------- */
-  
   color: var(--text-color);
-  
-  /* Transición suave para cuando cambiamos de tema */
   transition: background-color 0.3s ease, color 0.3s ease;
-
-  /* Flexbox para centrar todo */
   display: flex;
   flex-direction: column;
   align-items: center;
-  
   min-height: 100vh;
-  margin: 0; /* Chau bordes blancos molestos */
+  margin: 0;
+  overflow-x: hidden; /* Evita scroll horizontal */
 }
 
 /* --- BOTÓN FLOTANTE DEL TEMA --- */
@@ -56,14 +43,14 @@ body {
   top: 20px;
   right: 20px;
   background: rgba(8, 8, 8, 0.425);
-  border: 2px solid var(--text-color); /* El borde cambia de color según el tema */
+  border: 2px solid var(--text-color);
   color: var(--text-color);
   border-radius: 50%;
   width: 50px;
   height: 50px;
   font-size: 24px;
   cursor: pointer;
-  z-index: 10000; /* Siempre arriba de todo */
+  z-index: 10000;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -78,47 +65,48 @@ body {
 }
 
 .theme-btn:hover {
-  transform: scale(1.1); /* Efecto pop al pasar el mouse */
+  transform: scale(1.1);
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* --- ANIMACIÓN CIRCULAR DEL CAMBIO DE TEMA --- */
+/* --- ANIMACIÓN CIRCULAR --- */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
-::view-transition-old(root) { z-index: 1; }
-::view-transition-new(root) { z-index: 9999; }
+::view-transition-old(root) { 
+  z-index: 1; 
+}
+::view-transition-new(root) { 
+  z-index: 9999; 
+}
 
 /* --- ESTILOS DE LA FICHA DEL PROYECTO --- */
 .detalle-container {
-  width: 100%; 
-  max-width: 900px;
+  width: 95%; /* Ocupa casi todo el ancho, dejando un margen */
+  max-width: 900px; /* Pero no te pases de 900px en escritorio */
   margin: 40px auto;
   padding: 30px;
-  
-  /* Fondo de la tarjeta con un gradiente sutil */
   background: linear-gradient(rgba(247, 0, 255, 0.425), rgba(0, 4, 255, 0.2));
   color: var(--text-color);
-  
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .detalle-header {
-  display: flex;           /* Modo flexible activado */
-  flex-direction: column;  /* Título arriba, foto abajo */
-  align-items: center;     /* Centramos la imagen horizontalmente */
-  text-align: center;      /* Centramos el texto */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   margin-bottom: 20px;    
 }
 
-/* Botón de volver (arriba a la izquierda) */
+/* Botones de volver */
 .back-btn {
-  align-self: flex-start; 
-  margin: 20px 0 0 20px; 
+  align-self: flex-start;
+  margin: 20px 0 0 20px;
   text-decoration: none;
   color: var(--text-color);
   font-weight: bold;
@@ -129,9 +117,8 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Botón de volver (abajo del todo, con gradiente) */
 .back-btn2 { 
-  margin: 20px 20px 30px 20px; 
+  margin: 20px 20px 30px 20px;
   text-decoration: none;
   color: white;
   font-weight: bold;
@@ -139,7 +126,8 @@ body {
   padding: 20px 30px;
   border-radius: 30px;
   background: linear-gradient(45deg, #f700ff, #0004ff);
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: 0.3s ease;
+  display: inline-block; /* Para que respete el padding */
 }
 
 .back-btn:hover {
@@ -148,17 +136,22 @@ body {
 
 h1, h2 {
   color: var(--text-color);
+  text-align: center;
 }
 
-/* --- IMAGEN PRINCIPAL DEL PROYECTO --- */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* --- IMAGEN PRINCIPAL --- */
 .main-img-detalle {
-  width: 100%;             
-  max-width: 500px;        /* Tope para que no se vaya de mambo en PC */
-  height: 500px;           
-  aspect-ratio: 16/9;      /* Formato cine */
-  object-fit: cover;       /* Recorta para llenar sin deformar */
-  border-radius: 40px;
-  margin: 20px auto;       /* El 'auto' ayuda a centrar si falla el flex */
+  width: 100%;
+  max-width: 600px; /* Un poco más ancha en escritorio */
+  height: 450px; /* Altura fija SOLO para escritorio */
+  object-fit: cover;
+  border-radius: 30px;
+  margin: 20px auto;
   border: 2px solid rgba(247, 0, 255, 0.3);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
 }
@@ -166,39 +159,35 @@ h1, h2 {
 /* --- GRILLA DE LA GALERÍA --- */
 .gallery-grid {
   display: grid;
-  
-  /* Esto centra las fotos adentro de cada celda */
   place-items: center; 
-  
-  /* OJO ACÁ: Puse 600px para que se vean grandes en PC */
-  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-  
-  gap: 15px;
-  margin-top: 15px;
+  /* EN ESCRITORIO: Imágenes grandes */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
   width: 100%; 
 }
 
 .gallery-grid img {
-  width: 70%;  /* Achicamos un poco la imagen dentro de su celda */
-  height: 100%; 
+  width: 100%;
+  height: auto;
   object-fit: cover;
-  border-radius: 30px;
+  border-radius: 20px;
   cursor: pointer;
   transition: transform 0.3s;
   border: 1px solid rgba(128, 128, 128, 0.2);
 }
 
 .gallery-grid img:hover {
-  transform: scale(1.03); /* Efecto zoom sutil */
+  transform: scale(1.03);
 }
 
-/* --- BADGES DE TECNOLOGÍAS --- */
-.tech-stack-detalle {
+/* --- BADGES Y LINKS --- */
+.tech-stack-detalle, .links-proyecto {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 15px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .tech-badge {
@@ -211,18 +200,10 @@ h1, h2 {
   align-items: center;
 }
 
-/* --- LINKS DEL PROYECTO (Repo y Demo) --- */
-.links-proyecto {
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-  justify-content: center; 
-}
-
 .cta-small {
   background: linear-gradient(45deg, #f700ff, #0004ff);
   color: white;
-  padding: 10px 25px;
+  padding: 12px 30px;
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
@@ -236,5 +217,63 @@ h1, h2 {
 .cta-small.outline {
   background: transparent;
   border: 2px solid #0004ff;
-  color: var(--text-color); 
+  color: var(--text-color);
+}
+
+
+/* =========================================
+   REGLAS DE EMERGENCIA PARA CELULARES Y TABLETS
+========================================= */
+@media (max-width: 768px) {
+  /* Ajustamos el contenedor principal */
+  .detalle-container {
+    padding: 20px;
+    margin-top: 80px; /* Más margen arriba para el botón de tema */
+  }
+  
+  /* Títulos más chicos */
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  /* Botones de volver más compactos */
+  .back-btn {
+    margin: 10px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .back-btn2 {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    margin: 20px 0;
+  }
+  
+  /* IMAGEN PRINCIPAL NO SE ROMPE: Altura automática */
+  .main-img-detalle {
+    height: auto;
+    max-height: 400px;
+  }
+  
+  /* GALERÍA UNA ABAJO DE LA OTRA */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  /* Links uno abajo del otro en celus muy angostos */
+  .links-proyecto {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .cta-small {
+    width: 100%;
+    text-align: center;
+  }
 }
